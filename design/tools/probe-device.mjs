@@ -8,9 +8,19 @@
  * 用法：先 adb forward，再 node design/tools/probe-device.mjs
  */
 import { execFileSync } from 'node:child_process';
+import { join } from 'node:path';
 
-const ADB = 'D:\\Android\\Sdk\\platform-tools\\adb.exe';
-const PKG = 'cn.shizi.learner';
+// SDK 路径从环境变量取，不写死本机位置
+const SDK =
+  process.env.ANDROID_HOME ||
+  process.env.ANDROID_SDK_ROOT ||
+  (process.env.LOCALAPPDATA ? join(process.env.LOCALAPPDATA, 'Android', 'Sdk') : null);
+if (!SDK) {
+  console.error('✗ 请设置 ANDROID_HOME 或 ANDROID_SDK_ROOT');
+  process.exit(1);
+}
+const ADB = join(SDK, 'platform-tools', process.platform === 'win32' ? 'adb.exe' : 'adb');
+const PKG = process.argv[3] ?? 'cn.shizi.learner';
 
 function adb(...args) {
   return execFileSync(ADB, args, { encoding: 'utf8' }).trim();

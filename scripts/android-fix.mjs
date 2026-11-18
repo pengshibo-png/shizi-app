@@ -125,10 +125,26 @@ if (!current.includes('overridePathCheck')) {
   patched.push('gradle.properties');
 }
 
-// 4) local.properties：指向 SDK
+// 4) local.properties：指向 Android SDK
+//    路径从环境变量取，不写死本机位置 —— 否则别人克隆后照着 README 走不通。
 const lp = join(ANDROID, 'local.properties');
 if (!existsSync(lp)) {
-  writeFileSync(lp, 'sdk.dir=D:\\\\Android\\\\Sdk\n', 'ascii');
+  const sdk =
+    process.env.ANDROID_HOME ||
+    process.env.ANDROID_SDK_ROOT ||
+    (process.env.LOCALAPPDATA ? join(process.env.LOCALAPPDATA, 'Android', 'Sdk') : null);
+  if (!sdk || !existsSync(sdk)) {
+    console.error(
+      '✗ 找不到 Android SDK。请设置 ANDROID_HOME（或 ANDROID_SDK_ROOT）后重跑本脚本。',
+    );
+    process.exit(1);
+  }
+  // properties 值按 Java 规范转义：反斜杠 -> \\，非 ASCII -> \\uXXXX
+  // （早期版本用 'ascii' 直接写，路径含中文时会静默写坏）
+  const esc = sdk
+    .replace(/\\/g, '\\\\')
+    .replace(/[^\x20-\x7e]/g, (ch) => '\\u' + ch.charCodeAt(0).toString(16).padStart(4, '0'));
+  writeFileSync(lp, `sdk.dir=${esc}\n`, 'utf8');
   patched.push('local.properties');
 }
 
