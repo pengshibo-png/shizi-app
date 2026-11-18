@@ -1,0 +1,262 @@
+/* ============================================================================
+ * 组件层「白纸黑字」
+ *
+ * 原则：一个元素只做一件事，能用留白分组的就不用边框和底色分组。
+ * 田字格是中性细线；只有「当前这个字」用朱砂。
+ * ========================================================================== */
+
+/* ---------------------------------------------------------------- 田字格 */
+
+.shi-tianzi {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: transparent;           /* 不再有白底盒子，格子浮在纸上 */
+  border: var(--shi-grid-line) solid var(--shi-color-grid);
+  border-radius: var(--shi-radius-sm);
+  overflow: hidden;
+  container-type: size;
+}
+
+/* 上一版这里有一道「内描细线」（刻本外粗内细）——视觉上是两个框套两个框，
+   简洁优先，去掉。 */
+
+/* 格内虚线十字：教间架，保留 */
+.shi-tianzi-h,
+.shi-tianzi-v {
+  position: absolute;
+  pointer-events: none;
+}
+
+.shi-tianzi-h {
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  border-top: var(--shi-grid-guide) dashed var(--shi-color-grid-soft);
+}
+
+.shi-tianzi-v {
+  top: 8%;
+  bottom: 8%;
+  left: 50%;
+  border-left: var(--shi-grid-guide) dashed var(--shi-color-grid-soft);
+}
+
+/* 米字格对角线：只在单字教学时出现 */
+.shi-tianzi--mi::before,
+.shi-tianzi--mi::after {
+  content: '';
+  position: absolute;
+  left: -22%;
+  right: -22%;
+  top: 50%;
+  border-top: var(--shi-grid-guide) dashed var(--shi-color-grid-soft);
+  pointer-events: none;
+}
+
+.shi-tianzi--mi::before {
+  transform: rotate(45deg);
+}
+
+.shi-tianzi--mi::after {
+  transform: rotate(-45deg);
+}
+
+.shi-tianzi-char {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  font-family: var(--shi-font-hanzi);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--shi-color-text);
+  font-size: 68cqw;
+  transform: translateY(-1.5%);
+}
+
+@supports not (font-size: 1cqw) {
+  .shi-tianzi-char {
+    font-size: clamp(28px, 12vw, 96px);
+  }
+}
+
+/* 待描的字：淡到几乎只剩轮廓（这一档不是「盒子」，是字的颜色） */
+.shi-tianzi.is-guide .shi-tianzi-char {
+  /* 待描的字仍是「字」，要按大字 3:1 以上，不能用线的 2.08 */
+  color: var(--shi-color-faint);
+}
+
+/* 已识：中性，不加绿框 */
+.shi-tianzi.is-done {
+  border-color: var(--shi-color-grid);
+}
+
+.shi-tianzi.is-done .shi-tianzi-char {
+  color: var(--shi-color-text);
+}
+
+/* 当前：唯一一处朱砂格 */
+.shi-tianzi.is-current {
+  border-width: var(--shi-grid-bleed);
+  border-color: var(--shi-color-grid-active);
+}
+
+/* 预览用的小格：去掉边框，只留字，屏幕里少四个盒子 */
+.shi-tianzi.is-bare {
+  border-color: transparent;
+}
+
+.shi-tianzi.is-bare .shi-tianzi-h,
+.shi-tianzi.is-bare .shi-tianzi-v {
+  border-color: transparent;
+}
+
+/* ---------------------------------------------------------------- 按钮 */
+
+.shi-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: var(--shi-control-md);
+  padding: 0 22px;
+  border-radius: var(--shi-radius-control);
+  font-size: var(--shi-text-lg);
+  font-weight: var(--shi-weight-strong);
+  line-height: 1;
+  transition:
+    transform var(--shi-motion-press-down) var(--shi-ease-out),
+    background-color var(--shi-motion-micro) var(--shi-ease-standard);
+}
+
+.shi-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.shi-btn:disabled {
+  opacity: 0.4;
+}
+
+/* 主行动：整屏唯一的大色块。去掉上一版的内描边（那是第二个框） */
+.shi-btn--primary {
+  width: 100%;
+  min-height: var(--shi-control-primary);
+  background: var(--shi-color-action);
+  color: var(--shi-color-on-action);
+  letter-spacing: 0.14em;
+}
+
+.shi-btn--primary:active:not(:disabled) {
+  background: color-mix(in srgb, var(--shi-color-action) 88%, var(--shi-color-text));
+}
+
+/* 次级：不再有边框盒子，用文字本身 */
+.shi-btn--secondary {
+  background: transparent;
+  color: var(--shi-color-text-muted);
+  min-height: var(--shi-control-sm);
+}
+
+.shi-btn--secondary:active {
+  color: var(--shi-color-text);
+}
+
+.shi-btn-icon {
+  display: flex;
+  line-height: 0;
+}
+
+/* ---------------------------------------------------------------- 喇叭 */
+
+/* 朗读是老人端最高频的动作，但它不该是一个灰色方块：
+   圆形 + 只用描边，安静但点得到。 */
+.shi-speak {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--shi-control-speak);
+  height: var(--shi-control-speak);
+  border-radius: var(--shi-radius-pill);
+  color: var(--shi-color-text-muted);
+  transition:
+    color var(--shi-motion-micro) var(--shi-ease-standard),
+    background-color var(--shi-motion-micro) var(--shi-ease-standard);
+}
+
+.shi-speak:active {
+  background: var(--shi-color-sunken);
+  color: var(--shi-color-text);
+}
+
+.shi-speak.is-playing {
+  color: var(--shi-color-action);
+}
+
+/* ---------------------------------------------------------------- 返回 */
+
+.shi-back {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-left: -10px;
+  border-radius: var(--shi-radius-control);
+  font-size: 32px;
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-back:active {
+  background: var(--shi-color-sunken);
+}
+
+/* ---------------------------------------------------------------- 进度 */
+
+/* 上一版是「描红格子逐个填满」，很贴题材但视觉上是一条粗色带。
+   简洁优先：3px 细线 + 一个数字，够了。 */
+.shi-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shi-progress-track {
+  flex: 1;
+  height: 3px;
+  background: var(--shi-color-sunken);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.shi-progress-fill {
+  height: 100%;
+  background: var(--shi-color-action);
+  transition: width var(--shi-motion-medium) var(--shi-ease-out);
+}
+
+.shi-progress-label {
+  flex: none;
+  font-size: var(--shi-text-sm);
+  color: var(--shi-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------- 完成标记 */
+
+/* 去掉方块对勾：完成时什么都不加（不打扰），未完成也不刺眼。
+   只在「今天做完」时出现一个安静的对勾。 */
+.shi-donemark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--shi-radius-sm);
+  color: transparent;
+}
+
+.shi-donemark.is-done {
+  color: var(--shi-color-success);
+}

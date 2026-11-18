@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="utf-8" />
+<title>A · 首页</title>
+<link rel="stylesheet" href="../../packages/ui/src/tokens.css" />
+<style>
+  @font-face {
+    font-family: 'ShiziWenKai';
+    src: url('../../packages/content/assets/fonts/wenkai-subset.woff2') format('woff2');
+    font-display: block;
+  }
+  html, body { width: 800px; height: 1280px; overflow: hidden; }
+  body { display: flex; flex-direction: column; padding: 0 var(--shi-page-padding) var(--shi-space-8); }
+
+  /* 顶栏：只放时间与天气，不参与主内容的分组 */
+  .top { display: flex; align-items: center; justify-content: space-between; height: 44px; flex: none;
+         font-size: var(--shi-type-caption); line-height: 1; color: var(--shi-color-text-muted); }
+
+  .greet { margin-top: var(--shi-space-6); }
+  .greet h1 { font-size: var(--shi-type-h1); line-height: 1.2; font-weight: 500; }
+  .greet .sub { margin-top: var(--shi-space-2); font-size: var(--shi-type-body-sm); line-height: 1.4;
+                color: var(--shi-color-text-muted); }
+
+  .today { margin-top: var(--shi-space-8);
+           display: flex; align-items: center; gap: var(--shi-space-8);
+           background: var(--shi-color-surface); border-radius: var(--shi-radius-overlay);
+           padding: var(--shi-space-8); }
+  .today .num { font-size: 128px; line-height: 0.86; font-weight: 500; color: var(--shi-color-action);
+                font-variant-numeric: tabular-nums; }
+  .today .num small { font-size: 44px; font-weight: 400; }
+  .today .txt .k { font-size: var(--shi-type-h2); line-height: 1.25; }
+  .today .txt .v { margin-top: var(--shi-space-2); font-size: var(--shi-type-body-sm); line-height: 1.4;
+                   color: var(--shi-color-text-muted); }
+
+  .rows { margin-top: var(--shi-space-8); flex: 1; }
+  .row { display: flex; align-items: center; gap: var(--shi-space-4); height: 100px;
+         border-bottom: 1px solid var(--shi-color-border); }
+  .row:last-child { border-bottom: 0; }
+  /* mark / chev 是图形块，用固定尺寸，避免文字行盒影响中线 */
+  .row .mark { flex: none; width: 44px; height: 44px; border-radius: var(--shi-radius-pill);
+               display: flex; align-items: center; justify-content: center;
+               font-size: 24px; line-height: 1; }
+  .row.done .mark { background: var(--shi-color-success); color: var(--shi-color-canvas); }
+  .row.todo .mark { border: 2px solid var(--shi-color-grid); }
+  .row .name { flex: 1; font-size: var(--shi-type-body); line-height: 1.2; }
+  /* 固定宽度 + 右对齐：各行的起点与终点都对齐，形成 keyline */
+  .row .meta { flex: none; width: 120px; text-align: right;
+               font-size: var(--shi-type-caption); line-height: 1.2;
+               color: var(--shi-color-text-muted); font-variant-numeric: tabular-nums; }
+  .row .chev { flex: none; width: 32px; height: 32px; text-align: center;
+               font-size: 36px; line-height: 32px; color: var(--shi-color-grid); }
+
+  .cta { flex: none; height: var(--shi-control-primary); border-radius: var(--shi-radius-control);
+         background: var(--shi-color-action); color: var(--shi-color-on-action);
+         display: flex; align-items: center; justify-content: center; gap: var(--shi-space-3);
+         font-size: var(--shi-type-label); font-weight: 500; line-height: 1; }
+  .cta .ico { font-size: 34px; line-height: 1; }
+</style>
+</head>
+<body>
+  <div class="top"><span>9:24</span><span>晴 18°</span></div>
+
+  <div class="greet">
+    <h1>您好，今天还有 3 项</h1>
+    <div class="sub">昨天学了 20 个字，正确率 85%</div>
+  </div>
+
+  <div class="today">
+    <div class="num">12<small>/20</small></div>
+    <div class="txt">
+      <div class="k">今天的新字</div>
+      <div class="v">已学 12 个，还差 8 个</div>
+    </div>
+  </div>
+
+  <div class="rows">
+    <div class="row done">
+      <div class="mark">✓</div>
+      <div class="name">听一听</div>
+      <div class="meta">已完成</div>
+      <div class="chev">›</div>
+    </div>
+    <div class="row todo">
+      <div class="mark"></div>
+      <div class="name">复习 74 个字</div>
+      <div class="meta">还剩 74</div>
+      <div class="chev">›</div>
+    </div>
+    <div class="row todo">
+      <div class="mark"></div>
+      <div class="name">生活数学 · 认识人民币</div>
+      <div class="meta">3 题</div>
+      <div class="chev">›</div>
+    </div>
+    <div class="row todo">
+      <div class="mark"></div>
+      <div class="name">科普 · 一日三次</div>
+      <div class="meta">1 条</div>
+      <div class="chev">›</div>
+    </div>
+  </div>
+
+  <div class="cta"><span class="ico">▶</span>接着学</div>
+</body>
+</html>

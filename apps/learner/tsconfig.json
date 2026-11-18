@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["vite/client", "node"],
+    "paths": {
+      "@shi/ui": ["../../packages/ui/src/index.ts"],
+      "@shi/core": ["../../packages/core/src/index.ts"],
+      "@shi/content": ["../../packages/content/index.d.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

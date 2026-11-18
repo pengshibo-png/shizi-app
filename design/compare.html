@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>三套视觉方向对比</title>
+<style>
+  body { margin: 0; padding: 48px 40px; background: #2b2b2b; color: #eaeaea;
+         font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif; }
+  h1 { font-size: 28px; margin: 0 0 8px; font-weight: 500; }
+  .note { font-size: 15px; color: #a8a8a8; margin-bottom: 40px; line-height: 1.6; }
+  .grid { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+  .col { flex: 1 1 300px; max-width: 420px; }
+  .col img { width: 100%; display: block; border-radius: 8px;
+             box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+  .cap { margin-top: 16px; }
+  .cap .t { font-size: 20px; font-weight: 500; }
+  .cap .d { font-size: 14px; color: #a8a8a8; margin-top: 6px; line-height: 1.65; }
+  .tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px;
+         margin-left: 8px; vertical-align: middle; }
+  .rec { background: #9e2f25; color: #fff; }
+  .alt { background: #3a3a3a; color: #ccc; }
+  .row2 { display: flex; gap: 24px; margin-top: 12px; }
+  .row2 img { flex: 1; width: 0; }
+</style>
+</head>
+<body>
+  <h1>三套视觉方向</h1>
+  <div class="note">
+    同一屏（首页）的三套做法。字号、点击区、对比度都按同一套适老化数值做过实测。<br />
+    选定一套后，另一套的局部（比如 B 的书页标题、C 的年画边框）可以拆过来用。
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <img src="../shots/A-home.png" alt="A 案 晨纸夜墨 首页" />
+      <div class="cap">
+        <div class="t">A · 晨纸夜墨<span class="tag rec">推荐</span></div>
+        <div class="d">
+          白天宣纸、夜里黑板，随时钟自动换装。首页用课程表式行列表，不做等大卡片宫格。
+          全 App 唯一用力的是田字格。夜间亮度低，对畏光的眼睛更友好。
+        </div>
+        <div class="row2">
+          <img src="../shots/A-char.png" alt="A 案 单字页" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <img src="../shots/B-book.png" alt="B 案 书页 首页" />
+      <div class="cap">
+        <div class="t">B · 书页<span class="tag alt">备选</span></div>
+        <div class="d">
+          线装书的路子：米色纸、靛蓝书脊、目录式列表配页码。最静、装饰最少，
+          标题用楷体大字。缺点是没有夜间方案，晚上用会觉得亮。
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <img src="../shots/C-nianhua.png" alt="C 案 年画 首页" />
+      <div class="cap">
+        <div class="t">C · 年画<span class="tag alt">备选</span></div>
+        <div class="d">
+          年画的朱红石绿、双线画框。最有年味，老人一看就亲切。
+          缺点是颜色重，长时间阅读容易累，也更容易显出"装饰感"。
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

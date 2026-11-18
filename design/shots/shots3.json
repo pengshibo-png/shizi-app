@@ -1,0 +1,90 @@
+{
+ "shots": [
+  "01-home-paper",
+  "02-home-ink",
+  "03-encyclopedia",
+  "04-enc-list",
+  "05-enc-card",
+  "06-history",
+  "07-study",
+  "08-mychars",
+  "09-char-sheet"
+ ],
+ "geo": {
+  "vh": 851,
+  "bodyH": 851,
+  "app": {
+   "t": 0,
+   "b": 772,
+   "h": 772,
+   "w": 393
+  },
+  "tiantou": {
+   "t": 8,
+   "b": 96,
+   "h": 88,
+   "w": 358
+  },
+  "lesson": {
+   "t": 96,
+   "b": 346,
+   "h": 250,
+   "w": 358
+  },
+  "now": {
+   "t": 147,
+   "b": 304,
+   "h": 158,
+   "w": 158
+  },
+  "tasks": {
+   "t": 362,
+   "b": 665,
+   "h": 304,
+   "w": 358
+  },
+  "task1": {
+   "t": 363,
+   "b": 438,
+   "h": 76,
+   "w": 358
+  },
+  "dijiao": {
+   "t": 679,
+   "b": 764,
+   "h": 85,
+   "w": 358
+  },
+  "cta": {
+   "t": 679,
+   "b": 764,
+   "h": 85,
+   "w": 358
+  },
+  "tabbar": {
+   "t": 772,
+   "b": 851,
+   "h": 79,
+   "w": 393
+  }
+ },
+ "strokeInfo": {
+  "svg": true,
+  "paths": 66,
+  "hint": "正在写",
+  "rowH": 165,
+  "gap": 0
+ },
+ "sheetGeo": {
+  "sheetH": 631,
+  "bottom": 851,
+  "vh": 851,
+  "strokeSvg": true
+ },
+ "audit": {
+  "overflow": [],
+  "bodyH": 851,
+  "vh": 851
+ },
+ "errors": []
+}

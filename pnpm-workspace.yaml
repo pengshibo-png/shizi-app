@@ -1,0 +1,6 @@
+packages:
+  - packages/*
+  - apps/*
+  - services/*
+minimumReleaseAgeExclude:
+  - vite@8.3.8

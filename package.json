@@ -1,0 +1,32 @@
+{
+  "name": "shizi-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "科普识字 App — 老人识字 + 生活数学 + 生活百科，含家属监护端",
+  "type": "module",
+  "packageManager": "pnpm@11.28.5",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "content:chars": "node packages/content/scripts/build-characters.mjs",
+    "content:words": "node packages/content/scripts/build-words.mjs",
+    "content:science": "node packages/content/scripts/build-science.mjs",
+    "content:enc": "node packages/content/scripts/build-encyclopedia.mjs",
+    "content:strokes": "node packages/content/scripts/build-strokes.mjs",
+    "content:math": "node packages/content/scripts/build-math.mjs",
+    "content:check": "node packages/content/scripts/verify-content.mjs",
+    "content:all": "pnpm content:chars && pnpm content:words && pnpm content:science && pnpm content:enc && pnpm content:strokes && pnpm content:math && pnpm content:check",
+    "plan:doc": "node packages/content/scripts/gen-plan-doc.mjs",
+    "dev:learner": "pnpm --filter @shi/learner dev",
+    "dev:monitor": "pnpm --filter @shi/monitor dev",
+    "dev:sync": "pnpm --filter @shi/sync dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}

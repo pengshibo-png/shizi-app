@@ -1,0 +1,582 @@
+{
+ "format": "better-design-layout-v1",
+ "note": "DOM dump of body at 800x1280, devicePixelRatio 1",
+ "viewport": {
+  "width": 800,
+  "height": 1280
+ },
+ "nodes": [
+  {
+   "id": "body#1",
+   "parent": null,
+   "role": "window",
+   "rect": [
+    0,
+    0,
+    800,
+    1280
+   ],
+   "padding": [
+    0,
+    24,
+    32,
+    24
+   ]
+  },
+  {
+   "id": "div#2",
+   "parent": "body#1",
+   "role": "container",
+   "rect": [
+    24,
+    0,
+    752,
+    44
+   ]
+  },
+  {
+   "id": "span#3",
+   "parent": "div#2",
+   "role": "text",
+   "rect": [
+    24,
+    11,
+    42.75,
+    22
+   ],
+   "name": "9:24 (span#3)",
+   "ink": [
+    24,
+    15,
+    42.75,
+    17
+   ],
+   "align": "start"
+  },
+  {
+   "id": "span#4",
+   "parent": "div#2",
+   "role": "text",
+   "rect": [
+    716.5,
+    11,
+    59.5,
+    22
+   ],
+   "name": "晴 18° (span#4)",
+   "ink": [
+    716.5,
+    15,
+    59.5,
+    17
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#5",
+   "parent": "body#1",
+   "role": "container",
+   "rect": [
+    24,
+    68,
+    752,
+    103.98
+   ]
+  },
+  {
+   "id": "h1#6",
+   "parent": "div#5",
+   "role": "text",
+   "rect": [
+    24,
+    68,
+    752,
+    62.39
+   ],
+   "name": "您好，今天还有 3 项 (h1#6)",
+   "ink": [
+    24,
+    83,
+    469.05,
+    38
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#7",
+   "parent": "div#5",
+   "role": "text",
+   "rect": [
+    24,
+    138.39,
+    752,
+    33.59
+   ],
+   "name": "昨天学了 20 个字，正确率 85% (div#7)",
+   "ink": [
+    24,
+    147.39,
+    331.52,
+    18
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#8",
+   "parent": "body#1",
+   "role": "container",
+   "rect": [
+    24,
+    203.98,
+    752,
+    174.83
+   ],
+   "padding": [
+    32,
+    32,
+    32,
+    32
+   ]
+  },
+  {
+   "id": "div#9",
+   "parent": "div#8",
+   "role": "text",
+   "rect": [
+    56,
+    235.98,
+    212.02,
+    110.83
+   ],
+   "name": "12/20 (div#9)",
+   "ink": [
+    56,
+    251.98,
+    212.02,
+    94
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#10",
+   "parent": "div#8",
+   "role": "container",
+   "rect": [
+    300.02,
+    246.84,
+    229.47,
+    89.09
+   ]
+  },
+  {
+   "id": "div#11",
+   "parent": "div#10",
+   "role": "text",
+   "rect": [
+    300.02,
+    246.84,
+    229.47,
+    47.5
+   ],
+   "name": "今天的新字 (div#11)",
+   "ink": [
+    300.02,
+    258.84,
+    190,
+    28
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#12",
+   "parent": "div#10",
+   "role": "text",
+   "rect": [
+    300.02,
+    302.34,
+    229.47,
+    33.59
+   ],
+   "name": "已学 12 个，还差 8 个 (div#12)",
+   "ink": [
+    300.02,
+    311.34,
+    229.47,
+    18
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#13",
+   "parent": "body#1",
+   "role": "container",
+   "rect": [
+    24,
+    410.81,
+    752,
+    741.19
+   ]
+  },
+  {
+   "id": "div#14",
+   "parent": "div#13",
+   "role": "container",
+   "rect": [
+    24,
+    410.81,
+    752,
+    100
+   ]
+  },
+  {
+   "id": "div#15",
+   "parent": "div#14",
+   "role": "text",
+   "rect": [
+    24,
+    438.31,
+    44,
+    44
+   ],
+   "name": "✓ (div#15)",
+   "ink": [
+    37.8,
+    442.31,
+    16.41,
+    18
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#16",
+   "parent": "div#14",
+   "role": "text",
+   "rect": [
+    84,
+    443.52,
+    508,
+    33.59
+   ],
+   "name": "听一听 (div#16)",
+   "ink": [
+    84,
+    450.52,
+    84,
+    21
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#17",
+   "parent": "div#14",
+   "role": "text",
+   "rect": [
+    608,
+    447.11,
+    120,
+    26.39
+   ],
+   "name": "已完成 (div#17)",
+   "ink": [
+    662,
+    453.11,
+    66,
+    17
+   ],
+   "align": "end"
+  },
+  {
+   "id": "div#18",
+   "parent": "div#14",
+   "role": "text",
+   "rect": [
+    744,
+    444.31,
+    32,
+    32
+   ],
+   "name": "› (div#18)",
+   "ink": [
+    754.56,
+    449.31,
+    10.88,
+    27
+   ],
+   "align": "center"
+  },
+  {
+   "id": "div#19",
+   "parent": "div#13",
+   "role": "container",
+   "rect": [
+    24,
+    510.81,
+    752,
+    100
+   ]
+  },
+  {
+   "id": "div#20",
+   "parent": "div#19",
+   "role": "container",
+   "rect": [
+    24,
+    538.31,
+    44,
+    44
+   ],
+   "padding": [
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "div#21",
+   "parent": "div#19",
+   "role": "text",
+   "rect": [
+    84,
+    543.52,
+    508,
+    33.59
+   ],
+   "name": "复习 74 个字 (div#21)",
+   "ink": [
+    84,
+    550.52,
+    155.63,
+    21
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#22",
+   "parent": "div#19",
+   "role": "text",
+   "rect": [
+    608,
+    547.11,
+    120,
+    26.39
+   ],
+   "name": "还剩 74 (div#22)",
+   "ink": [
+    654.64,
+    553.11,
+    73.36,
+    17
+   ],
+   "align": "end"
+  },
+  {
+   "id": "div#23",
+   "parent": "div#19",
+   "role": "text",
+   "rect": [
+    744,
+    544.31,
+    32,
+    32
+   ],
+   "name": "› (div#23)",
+   "ink": [
+    754.56,
+    549.31,
+    10.88,
+    27
+   ],
+   "align": "center"
+  },
+  {
+   "id": "div#24",
+   "parent": "div#13",
+   "role": "container",
+   "rect": [
+    24,
+    610.81,
+    752,
+    100
+   ]
+  },
+  {
+   "id": "div#25",
+   "parent": "div#24",
+   "role": "container",
+   "rect": [
+    24,
+    638.31,
+    44,
+    44
+   ],
+   "padding": [
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "div#26",
+   "parent": "div#24",
+   "role": "text",
+   "rect": [
+    84,
+    643.52,
+    508,
+    33.59
+   ],
+   "name": "生活数学 · 认识人民币 (div#26)",
+   "ink": [
+    84,
+    650.52,
+    292.55,
+    21
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#27",
+   "parent": "div#24",
+   "role": "text",
+   "rect": [
+    608,
+    647.11,
+    120,
+    26.39
+   ],
+   "name": "3 题 (div#27)",
+   "ink": [
+    688.86,
+    653.11,
+    39.14,
+    17
+   ],
+   "align": "end"
+  },
+  {
+   "id": "div#28",
+   "parent": "div#24",
+   "role": "text",
+   "rect": [
+    744,
+    644.31,
+    32,
+    32
+   ],
+   "name": "› (div#28)",
+   "ink": [
+    754.56,
+    649.31,
+    10.88,
+    27
+   ],
+   "align": "center"
+  },
+  {
+   "id": "div#29",
+   "parent": "div#13",
+   "role": "container",
+   "rect": [
+    24,
+    710.81,
+    752,
+    100
+   ]
+  },
+  {
+   "id": "div#30",
+   "parent": "div#29",
+   "role": "container",
+   "rect": [
+    24,
+    738.81,
+    44,
+    44
+   ],
+   "padding": [
+    2,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "id": "div#31",
+   "parent": "div#29",
+   "role": "text",
+   "rect": [
+    84,
+    744.02,
+    508,
+    33.59
+   ],
+   "name": "科普 · 一日三次 (div#31)",
+   "ink": [
+    84,
+    751.02,
+    208.55,
+    21
+   ],
+   "align": "start"
+  },
+  {
+   "id": "div#32",
+   "parent": "div#29",
+   "role": "text",
+   "rect": [
+    608,
+    747.61,
+    120,
+    26.39
+   ],
+   "name": "1 条 (div#32)",
+   "ink": [
+    688.86,
+    753.61,
+    39.14,
+    17
+   ],
+   "align": "end"
+  },
+  {
+   "id": "div#33",
+   "parent": "div#29",
+   "role": "text",
+   "rect": [
+    744,
+    744.81,
+    32,
+    32
+   ],
+   "name": "› (div#33)",
+   "ink": [
+    754.56,
+    749.81,
+    10.88,
+    27
+   ],
+   "align": "center"
+  },
+  {
+   "id": "div#34",
+   "parent": "body#1",
+   "role": "text",
+   "rect": [
+    24,
+    1152,
+    752,
+    96
+   ],
+   "name": "▶接着学 (div#34)",
+   "ink": [
+    332,
+    1178,
+    136,
+    22
+   ],
+   "align": "start"
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>三个方向 · 请选一个</title>
+<style>
+  body { margin: 0; padding: 36px 32px 44px; background: #16171A; color: #E8E8E6;
+         font-family: -apple-system, 'Noto Sans SC', system-ui, sans-serif; }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 6px; letter-spacing: -.01em; }
+  .sub { font-size: 14px; color: #8B8D93; line-height: 1.6; margin: 0 0 32px; }
+  .row { display: flex; gap: 44px; align-items: flex-start; flex-wrap: wrap; }
+  .col { flex: 0 0 auto; }
+  .col img { width: 393px; display: block; border-radius: 10px;
+             box-shadow: 0 18px 50px rgba(0,0,0,.55); }
+  .cap { margin-top: 18px; max-width: 393px; }
+  .cap .t { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+  .cap .t .tag { font-size: 11px; font-weight: 500; padding: 2px 7px;
+                 border-radius: 4px; background: #2A2C31; color: #A8AAB0;
+                 margin-left: 8px; vertical-align: middle; letter-spacing: .04em; }
+  .cap .d { font-size: 13.5px; color: #9EA0A6; line-height: 1.7; }
+  .cap .d b { color: #D8D8D4; font-weight: 600; }
+  .cap .bad { color: #7A7D84; font-size: 12.5px; margin-top: 8px; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <h1>三个方向，选一个</h1>
+  <p class="sub">
+    这三版不是同一个骨架换颜色——它们的<strong>结构、配色逻辑、气质都不同</strong>。<br />
+    选定后我按那一版重做全部六屏，再出 APK。
+  </p>
+
+  <div class="row">
+    <div class="col">
+      <img src="../shots/dir-A-ke-ben.png" alt="方向 A 刻本界栏" />
+      <div class="cap">
+        <div class="t">A · 刻本界栏 <span class="tag">传统 / 有出处</span></div>
+        <div class="d">
+          把 App 做成「一本书的一叶」：版框（外粗内细）、<b>界栏</b>（今天的字一字一格）、
+          天头地脚、朱批。汉字本来就是这么被教的，这个方向有真实出处，不是编的。
+          <br /><b>气质：</b>庄重、像课本、有文化根基，老人会觉得「这是在正经读书」。
+        </div>
+        <div class="bad">风险：纸色偏黄，你若嫌土就还是土。</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <img src="../shots/dir-B-ji-jian.png" alt="方向 B 极简符号" />
+      <div class="cap">
+        <div class="t">B · 极简符号 <span class="tag">现代 / 强识别</span></div>
+        <div class="d">
+          佐藤可士和那一路：<b>一个字占掉半个版面</b>，纯色满铺，零装饰零渐变零阴影。
+          字本身就是图形，不再需要插画。整屏只有白、墨、朱三色。
+          <br /><b>气质：</b>干净、有力量、绝对不像 AI 生成，一眼能记住。
+        </div>
+        <div class="bad">风险：可能太「设计」，老人未必觉得亲切。</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <img src="../shots/dir-C-guan-huai.png" alt="方向 C 关怀数据" />
+      <div class="cap">
+        <div class="t">C · 关怀数据 <span class="tag">现代 / 情绪友好</span></div>
+        <div class="d">
+          先回答「我今天做得怎么样」，再列任务：大圆环 + 三个数字（用时/正解/连学），
+          任务退到下面。<b>刻意不用红色</b>，不制造压力。墨绿 + 琥珀，避开暖纸赭红。
+          <br /><b>气质：</b>温和、有反馈感、像健康 App，老人不容易有挫败感。
+        </div>
+        <div class="bad">风险：信息多一档，可能不如前两个简洁。</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

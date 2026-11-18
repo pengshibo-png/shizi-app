@@ -1,0 +1,89 @@
+{
+ "steps": [
+  {
+   "s": "第一道题出现",
+   "ready": true
+  },
+  {
+   "s": "首启",
+   "got": "看看您已经会哪些"
+  },
+  {
+   "s": "识字摸底后",
+   "got": "再看看算术"
+  },
+  {
+   "s": "摸底完成→首页",
+   "got": "11月12日 周四\n今天认 20 个字\n一\nyī\n0 / 20\n二\n三\n四\n五\n"
+  },
+  {
+   "s": "摸底数据",
+   "knownCount": 120,
+   "effectiveDays": 84,
+   "newCharsTodaySample": [
+    "一",
+    "二",
+    "三",
+    "四",
+    "五"
+   ]
+  },
+  {
+   "s": "百科Tab",
+   "title": "生活百科",
+   "cats": 12
+  },
+  {
+   "s": "分类列表",
+   "title": "手机使用",
+   "rows": 57
+  },
+  {
+   "s": "卡片展开",
+   "body": "想孙子了，咱们自己也能拨过去。第一步，打开微信，找到孙子的聊"
+  },
+  {
+   "s": "我的Tab",
+   "title": "学习记录",
+   "stats": []
+  },
+  {
+   "s": "回今天"
+  },
+  {
+   "s": "学字页",
+   "hanzi": "一"
+  }
+ ],
+ "checks": {
+  "placementShown": true,
+  "mathPhaseReached": true,
+  "knownApplied": true,
+  "effectiveReduced": true,
+  "encTabWorks": true,
+  "encListWorks": true,
+  "encCardOpens": true,
+  "historyWorks": true,
+  "studyFlowOk": true,
+  "noRuntimeErrors": true
+ },
+ "errors": [],
+ "final": {
+  "learnedCount": 0,
+  "placementPhase": "done",
+  "knownCount": 120,
+  "effectiveDays": 84,
+  "planNewTarget": 20,
+  "newCharsTodayLen": 20,
+  "newCharsTodaySample": [
+   "一",
+   "二",
+   "三",
+   "四",
+   "五"
+  ],
+  "encTotal": 215,
+  "tab": "today"
+ },
+ "verdict": "PASS 全链路"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window background = paper canvas (f5efe1). Under targetSdk 36 the
+         system bars are transparent, so whatever shows before the WebView
+         paints comes from here. Keep it in sync with the canvas token in
+         packages/ui/src/tokens.css. -->
+    <color name="shi_window_bg">#FFF1F4F7</color>
+</resources>

@@ -1,0 +1,27 @@
+{
+  "name": "@shi/content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "内容数据入口：字表、词组、数学、生活百科、笔顺。数据由 scripts/ 下的构建脚本产出。",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./index.js",
+    "./characters.json": "./data/characters.json",
+    "./words.json": "./data/words.json",
+    "./math.json": "./data/math.json",
+    "./science.json": "./data/science.json"
+  },
+  "scripts": {
+    "build": "node scripts/build-characters.mjs",
+    "check": "node scripts/verify-content.mjs"
+  },
+  "dependencies": {
+    "hanzi-writer-data": "^2.0.1",
+    "pinyin-pro": "^3.29.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

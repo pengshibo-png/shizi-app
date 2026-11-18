@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">家人学习情况</string>
+    <string name="title_activity_main">家人学习情况</string>
+    <string name="package_name">cn.shizi.monitor</string>
+    <string name="custom_url_scheme">cn.shizi.monitor</string>
+</resources>

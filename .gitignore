@@ -1,0 +1,40 @@
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
+
+# 生成产物（可从脚本重建）
+packages/content/assets/audio/
+packages/content/assets/fonts/*.ttf
+packages/content/data/cache/
+
+# Capacitor / Android 构建产物
+apps/*/android/.gradle/
+apps/*/android/app/build/
+apps/*/android/build/
+apps/*/android/local.properties
+
+# 同步服务数据
+services/sync/data/
+
+.env
+.env.local
+
+# ---------------------------------------------------------------------------
+# 签名：仓库里不含任何密钥、口令或密钥库文件。
+# 本地开发用 android/keystore.properties（见 keystore.properties.example）。
+# ---------------------------------------------------------------------------
+*.keystore
+*.jks
+keystore.properties
+
+# ---------------------------------------------------------------------------
+# 构建产物
+# APK 单个 176MB，超过 GitHub 100MB 硬限制（推上去会被拒），且可从源码重建。
+# ---------------------------------------------------------------------------
+dist-apk/
+
+# 原始字体源文件 24.7MB（OFL-1.1，由 scripts/fetch-font 流程下载）。
+# 实际打包用的子集 wenkai-subset.woff2（808KB）已入库，克隆后无需再取源字体。
+packages/content/fonts-src/

@@ -1,0 +1,167 @@
+{
+ "screens": {
+  "习字首页": {
+   "air": 5.6,
+   "boxes": 28,
+   "boxNames": [
+    "shi-lamp",
+    "shi-lamp-dot",
+    "shi-seal shi-seal--new",
+    "shi-tianzi shi-tianzi--mi is-curre",
+    "shi-tianzi-frame",
+    "shi-gridstrip-tag",
+    "shi-tianzi is-guide",
+    "shi-progress-track shi-progress-tr",
+    "shi-tasks",
+    "shi-task",
+    "shi-task-icon",
+    "shi-donemark",
+    "shi-btn shi-btn--primary",
+    "shi-tabbar"
+   ],
+   "texts": 24,
+   "gapMedian": 57,
+   "gapP90": 92,
+   "accentEls": 34,
+   "accentUnique": [
+    "shi-lamp-dot",
+    "shi-seal shi-seal--new",
+    "shi-seal-k",
+    "B",
+    "shi-tianzi shi-tianzi--m",
+    "shi-tianzi-frame",
+    "shi-tianzi-h",
+    "shi-gridstrip-tag",
+    "shi-tianzi is-guide",
+    "shi-tianzi-char",
+    "shi-progress-fill",
+    "shi-task-icon"
+   ]
+  },
+  "百科目录": {
+   "air": 14.1,
+   "boxes": 13,
+   "boxNames": [
+    "shi-cat",
+    "shi-tabbar"
+   ],
+   "texts": 43,
+   "gapMedian": 27,
+   "gapP90": 57,
+   "accentEls": 17,
+   "accentUnique": [
+    "shi-cat-count shi-tnum",
+    "shi-tab is-active",
+    "shi-tab-icon",
+    "[object SVGAnimatedStrin",
+    "shi-tab-label"
+   ]
+  },
+  "我的": {
+   "air": 9.4,
+   "boxes": 26,
+   "boxNames": [
+    "shi-stat",
+    "shi-totalbar",
+    "shi-totalbar-learning",
+    "I",
+    "shi-week",
+    "shi-tianzi is-guide",
+    "shi-tianzi-frame",
+    "shi-hist-list",
+    "shi-tabbar"
+   ],
+   "texts": 31,
+   "gapMedian": 42,
+   "gapP90": 475,
+   "accentEls": 30,
+   "accentUnique": [
+    "shi-stat-v shi-tnum",
+    "shi-totalbar-learning",
+    "I",
+    "shi-tianzi is-guide",
+    "shi-tianzi-frame",
+    "shi-tianzi-char",
+    "shi-week-label",
+    "shi-tab is-active",
+    "shi-tab-icon",
+    "[object SVGAnimatedStrin",
+    "shi-tab-label"
+   ]
+  },
+  "习字页": {
+   "air": 8.9,
+   "boxes": 12,
+   "boxNames": [
+    "shi-progress-track",
+    "shi-progress-fill",
+    "shi-tianzi shi-tianzi--mi is-curre",
+    "shi-tianzi-frame",
+    "shi-speak",
+    "shi-radical",
+    "shi-stroke-row",
+    "shi-stroke is-playing",
+    "shi-stroke-hint",
+    "shi-choice"
+   ],
+   "texts": 11,
+   "gapMedian": 52,
+   "gapP90": 340,
+   "accentEls": 20,
+   "accentUnique": [
+    "shi-progress-fill",
+    "shi-tianzi shi-tianzi--m",
+    "shi-tianzi-frame",
+    "shi-tianzi-h",
+    "shi-py",
+    "shi-speak",
+    "[object SVGAnimatedStrin",
+    "shi-radical",
+    "shi-stroke-label",
+    "shi-stroke is-playing",
+    "shi-choice"
+   ]
+  }
+ },
+ "avg": {
+  "air": 9.5,
+  "boxes": 20,
+  "texts": 27,
+  "gapMedian": 45,
+  "accentEls": 25
+ },
+ "table": [
+  {
+   "屏": "习字首页",
+   "留白": "5.6%",
+   "盒子": 28,
+   "文字块": 24,
+   "中位间距": "57px",
+   "强调色元素": 34
+  },
+  {
+   "屏": "百科目录",
+   "留白": "14.1%",
+   "盒子": 13,
+   "文字块": 43,
+   "中位间距": "27px",
+   "强调色元素": 17
+  },
+  {
+   "屏": "我的",
+   "留白": "9.4%",
+   "盒子": 26,
+   "文字块": 31,
+   "中位间距": "42px",
+   "强调色元素": 30
+  },
+  {
+   "屏": "习字页",
+   "留白": "8.9%",
+   "盒子": 12,
+   "文字块": 11,
+   "中位间距": "52px",
+   "强调色元素": 20
+  }
+ ]
+}

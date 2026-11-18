@@ -1,0 +1,308 @@
+/* ============================================================================
+ * 科普识字 App — 设计令牌「靛墨」
+ *
+ * 上一版（描红）的问题被量化出来了：留白 9.5%、每屏 20 个带边框/底色的盒子、
+ * 25 处强调色 —— 满屏都是结构和颜色，没有一处是主角。用户要的是
+ * 简洁、高级感、呼吸感、留白。
+ *
+ * 这一版只改一件事：**把大部分东西拿走**。
+ *   · 画布是干净的纸，不再有纤维噪点
+ *   · 结构线降到中性的淡墨细线，不再用朱砂画满屏的格子
+ *   · 靛青只剩一处用途：她必须找到的那个按钮，和当前那一个字
+ *   · 块与块之间空出来，靠间距分组，不靠边框和底色分组
+ *   · 字重降一档，行距拉开，字距放松
+ * 田字格和笔顺留下 —— 它们不是装饰，是教字的东西。
+ * ========================================================================== */
+
+@font-face {
+  font-family: 'ShiziWenKai';
+  src: url('/fonts/wenkai-subset.woff2') format('woff2');
+  font-display: block;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  /* ---------- 字体 ---------- */
+  --shi-font-hanzi: 'ShiziWenKai', 'Kaiti SC', 'KaiTi', STKaiti, serif;
+  --shi-font-ui: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+
+  /* ---------- 字号：4 档 ---------- */
+  --shi-text-xl: clamp(32px, 8.4vw, 42px);   /* 每屏最多一个 */
+  --shi-text-lg: clamp(24px, 6vw, 28px);     /* 条目名 */
+  --shi-text-md: clamp(23px, 5.6vw, 26px);   /* 正文下限 */
+  --shi-text-sm: clamp(17px, 4.4vw, 19px);   /* 辅助，能不用就不用 */
+
+  --shi-type-hanzi: clamp(170px, 50vw, 320px);
+  --shi-type-hanzi-grid: clamp(38px, 10.5vw, 58px);
+
+  /* ---------- 间距：留白靠它，不靠边框 ----------
+   * 块与块之间至少 40px；页面上下至少 32px。
+   */
+  --shi-space-1: 4px;
+  --shi-space-2: 8px;
+  --shi-space-3: 12px;
+  --shi-space-4: 16px;
+  --shi-space-6: 24px;
+  --shi-space-8: 32px;
+  --shi-space-10: 40px;
+  --shi-space-14: 56px;
+
+  /* 呼吸用令牌：改这一个值，全 App 的疏密一起变 */
+  --shi-air-block: clamp(36px, 6.2vh, 56px);
+  --shi-air-tight: clamp(20px, 3.2vh, 28px);
+
+  /* ---------- 圆角：克制，纸是方的 ---------- */
+  --shi-radius-sm: 4px;
+  --shi-radius-control: 8px;
+  --shi-radius-container: 12px;
+  --shi-radius-overlay: 16px;
+  --shi-radius-pill: 9999px;
+
+  /* ---------- 线：只有两种 ---------- */
+  --shi-hairline: 0.5px;      /* 分隔 */
+  --shi-rule: 1px;            /* 格子 */
+  --shi-grid-line: 1px;       /* 田字格外框 */
+  --shi-grid-guide: 1px;      /* 格内虚线 */
+  --shi-grid-bleed: 1.5px;    /* 当前字的外框 */
+
+  /* ---------- 控件：热区不低于 64 ---------- */
+  --shi-control-primary: clamp(72px, 9.6vh, 84px);
+  --shi-control-md: 64px;
+  --shi-control-sm: 56px;
+  --shi-control-speak: 56px;
+
+  --shi-gap-page: clamp(22px, 6vw, 34px);   /* 左右留白加大 */
+  --shi-row-h: clamp(72px, 9vh, 84px);      /* 行高加大，行数减少 */
+
+  /* ---------- 动效 ---------- */
+  --shi-motion-press-down: 90ms;
+  --shi-motion-press-up: 180ms;
+  --shi-motion-micro: 120ms;
+  --shi-motion-small: 180ms;
+  --shi-motion-medium: 260ms;
+  --shi-motion-stroke: 450ms;
+
+  --shi-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --shi-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  --shi-content-max: 560px;   /* 收窄：宽屏时行更短，中间留白更多 */
+  --shi-shadow-overlay: 0 -6px 28px rgba(23, 19, 15, 0.14);
+}
+
+/* ============================================================================
+ * 纸（昼）—— 「靛墨」
+ *
+ * 配色按 huashu-design 色彩推导协议三步得出（scripts/derive-palette.mjs 可复算）：
+ *   采样：靛青/琉璃绀（蓝染与青花瓷）+ 松烟墨（带蓝底的冷近黑）+ 中性象牙白宣纸。
+ *         三者同属传统书写与织染材料 —— 这是「为什么是这个色」的答案。
+ *   收敛：oklch 3 个有彩色（靛 H255 / 石绿 H155 / 赭金 H75，两两色相差 ≥60°）
+ *         + 1 组冷中性明度序列；主色 chroma 0.094 落在「油墨感 0.08–0.15」区间。
+ *   论证：刻意避开上一版的「暖奶油底 #faf7f0 + 陶土红 #9a2820」——
+ *         那正是 skill 点名的 AI 默认家族，也是「不够高级」的根因。
+ *         压 chroma 借用印刷品的物理灰度，这是人眼被训练出的高级感来源。
+ * ========================================================================== */
+:root,
+[data-theme='paper'] {
+  --shi-color-canvas: #f1f4f7;       /* 中性象牙白（冷），oklch .966/.005/248 */
+  --shi-color-surface: #fafcfe;      /* 抬起面 */
+  --shi-color-sunken: #e2e7eb;       /* 进度槽、压深面 */
+  --shi-color-text: #171b20;         /* 松烟墨：冷近黑，15.67:1 */
+  --shi-color-text-muted: #565b63;   /* 所有 UI 小字，6.19:1 */
+  /* faint 只允许用在 ≥24px 的汉字上（3.28:1 只够大字，小字要 4.5:1） */
+  --shi-color-faint: #81878f;
+
+  --shi-color-rule: #dadee3;         /* 发丝分隔线 */
+  --shi-color-grid: #818893;         /* 田字格外框 3.24:1 —— 功能结构，必须看得见 */
+  --shi-color-grid-soft: #b8bec7;    /* 格内虚线十字 */
+  --shi-color-border: #dadee3;
+
+  --shi-color-action: #1a4373;       /* 靛青：整屏唯一强调，9.08:1 */
+  --shi-color-on-action: #f8fafd;    /* 按钮文字 9.59:1 */
+  --shi-color-focus: #1a4373;
+
+  --shi-color-success: #2d6945;      /* 石绿：已掌握、答对 */
+  --shi-color-warn: #8c5f0e;         /* 赭金：提醒 */
+  --shi-color-danger: #912e2c;
+  --shi-color-info: #1a4373;
+  --shi-color-gold: #a26f17;         /* 赭金点睛：连续天数，极小面积 */
+  /* 科目色合并成中性：界面不用颜色区分科目 */
+  --shi-color-math: #565b63;
+  --shi-color-science: #565b63;
+  --shi-color-grid-active: #1a4373;  /* 当前字的格框用靛青 */
+
+  --shi-weight-strong: 500;
+  --shi-weight-body: 400;
+  color-scheme: light;
+}
+
+/* ============================================================================
+ * 墨（夜）—— 靛黑底，同一套层级关系
+ * 夜里的靛必须提亮（L .38 → .76）才够对比；底色是靛黑而非纯黑或暖褐。
+ * ========================================================================== */
+[data-theme='ink'] {
+  --shi-color-canvas: #0d141e;       /* 靛黑 */
+  --shi-color-surface: #19212c;
+  --shi-color-sunken: #070d14;
+  --shi-color-text: #f1eee6;         /* 15.95:1 */
+  --shi-color-text-muted: #a4acb5;   /* 8.05:1 */
+  --shi-color-faint: #737b85;        /* 4.31:1 */
+
+  --shi-color-rule: #272e38;
+  --shi-color-grid: #606a77;         /* 3.37:1 */
+  --shi-color-grid-soft: #404854;
+  --shi-color-border: #272e38;
+
+  --shi-color-action: #83b4f3;       /* 提亮的靛，8.62:1 */
+  --shi-color-on-action: #0d141e;
+  --shi-color-focus: #83b4f3;
+
+  --shi-color-success: #75c291;
+  --shi-color-warn: #e2ac5e;
+  --shi-color-danger: #ed8079;
+  --shi-color-info: #83b4f3;
+  --shi-color-gold: #edb25a;
+  --shi-color-math: #a4acb5;
+  --shi-color-science: #a4acb5;
+  --shi-color-grid-active: #83b4f3;
+
+  --shi-weight-strong: 500;
+  --shi-weight-body: 400;
+  color-scheme: dark;
+}
+
+/* ============================================================================
+ * 基础重置
+ * ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--shi-color-canvas);
+  color: var(--shi-color-text);
+  font-family: var(--shi-font-ui);
+  font-size: var(--shi-text-md);
+  line-height: 1.55;          /* 上一版 1.45，拉开更透气 */
+  letter-spacing: 0.01em;     /* 中文小字距更松一点，安静 */
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  transition:
+    background-color var(--shi-motion-medium) var(--shi-ease-standard),
+    color var(--shi-motion-medium) var(--shi-ease-standard);
+}
+
+/* 上一版的纸纤维噪点已删除：满屏纹理会把留白也「填满」，与呼吸感相反，
+   而且它是大面积 blend，低端机白耗性能。 */
+
+.shi-selectable {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--shi-color-focus);
+  outline-offset: 3px;
+  border-radius: var(--shi-radius-control);
+}
+
+/* 滚动条细到几乎不存在，别在留白里插一根深色条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--shi-color-grid) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--shi-color-grid);
+  border-radius: var(--shi-radius-pill);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 120ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================================
+ * 排版工具类
+ * ========================================================================== */
+
+.shi-hanzi {
+  font-family: var(--shi-font-hanzi);
+  font-weight: 400;
+  font-size: var(--shi-type-hanzi);
+  line-height: 1;
+}
+
+.shi-xl {
+  font-size: var(--shi-text-xl);
+  line-height: 1.2;
+  font-weight: var(--shi-weight-strong);
+  letter-spacing: 0.005em;
+  text-wrap: balance;
+}
+
+.shi-lg {
+  font-size: var(--shi-text-lg);
+  line-height: 1.3;
+  font-weight: var(--shi-weight-strong);
+  text-wrap: balance;
+}
+
+.shi-md {
+  font-size: var(--shi-text-md);
+  line-height: 1.6;
+  font-weight: var(--shi-weight-body);
+}
+
+.shi-sm {
+  font-size: var(--shi-text-sm);
+  line-height: 1.45;
+  font-weight: var(--shi-weight-body);
+  color: var(--shi-color-text-muted);
+}
+
+.shi-tnum {
+  font-variant-numeric: tabular-nums;
+}

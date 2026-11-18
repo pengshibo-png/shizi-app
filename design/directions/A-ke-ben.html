@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>方向 A · 刻本界栏</title>
+<style>
+  /* ============================================================
+     方向 A：宋刻本界栏
+     思路：把 App 做成「一本书的一叶」。真实刻本的结构就是识字的结构——
+           版框（外粗内细）、界栏（一字一格）、鱼尾、天头地脚。
+           不做卡片、不做色块堆叠，信息全部住在格线里。
+     配色：纸 #EDE0BC（微黄竹纸）+ 墨 #1A1408 + 朱批 #A32B1E（只用两处）
+     ============================================================ */
+  @font-face {
+    font-family: 'Kai';
+    src: url('../../../packages/content/assets/fonts/wenkai-subset.woff2') format('woff2');
+    font-display: block;
+  }
+  html, body { width: 393px; height: 851px; margin: 0; overflow: hidden; }
+  body {
+    background: #EDE0BC;
+    color: #1A1408;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+    display: flex; flex-direction: column;
+    padding: 0 18px 14px;
+  }
+
+  .status { height: 28px; flex: none; display: flex; align-items: center;
+            justify-content: space-between; font-size: 13px; color: #6B5B3E;
+            font-family: system-ui, sans-serif; }
+
+  /* 版框：外粗内细的双线，刻本的标准做法 */
+  .leaf { flex: 1; min-height: 0; display: flex; flex-direction: column;
+          border: 2.5px solid #2A1F0E; padding: 3px; }
+  .leaf-inner { flex: 1; min-height: 0; display: flex; flex-direction: column;
+                border: 0.8px solid #2A1F0E; padding: 14px 16px 10px; }
+
+  /* 天头：极小，只有书名与一条朱批 */
+  .tiantou { flex: none; display: flex; align-items: flex-start;
+             justify-content: space-between; }
+  .tiantou .shu { font-size: 12px; letter-spacing: .3em; color: #6B5B3E; }
+  .tiantou .zhu { font-size: 12px; color: #A32B1E; writing-mode: vertical-rl;
+                  font-family: 'Kai', serif; letter-spacing: .12em;
+                  border-left: 1px solid #A32B1E; padding-left: 4px; }
+
+  /* 正题：竖排大字（一列），右侧留白多 */
+  .zhengti { flex: none; margin-top: 6px; display: flex;
+             justify-content: space-between; align-items: flex-start; }
+  .zhengti .title { writing-mode: vertical-rl; font-size: 34px; line-height: 1.1;
+                    letter-spacing: .12em; height: 118px; }
+  .zhengti .side { display: flex; flex-direction: column; gap: 6px;
+                   align-items: flex-end; font-size: 12px; color: #6B5B3E;
+                   font-family: system-ui, sans-serif; }
+  .zhengti .side .big { font-size: 40px; color: #1A1408; font-family: 'Kai', serif;
+                        line-height: 1; }
+
+  /* 界栏：今天的字，一字一格。这是刻本最核心的版式动作 */
+  .jie { flex: none; margin-top: 12px; display: grid;
+         grid-template-columns: repeat(5, 1fr);
+         border-top: 1px solid #2A1F0E; border-left: 1px solid #2A1F0E; }
+  .jie .ge { aspect-ratio: 1; border-right: 1px solid #2A1F0E;
+             border-bottom: 1px solid #2A1F0E;
+             display: flex; align-items: center; justify-content: center;
+             font-family: 'Kai', serif; font-size: 40px; line-height: 1; }
+  .jie .ge.done { color: #A32B1E; }
+  .jie-label { flex: none; margin-top: 5px; font-size: 11px; color: #6B5B3E;
+               font-family: system-ui, sans-serif; letter-spacing: .1em; }
+
+  /* 四项任务：刻本目录的样子，一行一栏，不用卡片 */
+  .mulu { flex: 1; min-height: 0; margin-top: 10px; display: flex;
+          flex-direction: column; }
+  .mu { flex: 1; display: flex; align-items: center; gap: 10px;
+        border-bottom: 1px dotted #8A7550; padding: 0 2px; }
+  .mu:last-child { border-bottom: 0; }
+  .mu .hao { flex: none; width: 22px; font-size: 13px; color: #6B5B3E;
+             font-family: 'Kai', serif; }
+  .mu .ming { flex: 1; font-size: 19px; line-height: 1.2; }
+  .mu .shu { flex: none; font-size: 13px; color: #6B5B3E;
+             font-family: system-ui, sans-serif; }
+  .mu .yin { flex: none; width: 20px; height: 20px; border: 1px solid #2A1F0E;
+             display: flex; align-items: center; justify-content: center;
+             font-size: 12px; color: #A32B1E; }
+  .mu.done .yin { background: #A32B1E; color: #EDE0BC; border-color: #A32B1E; }
+
+  /* 地脚：大，放主行动。刻本地脚本来就大 */
+  .dijiao { flex: none; margin-top: 10px; }
+  .cta { width: 100%; height: 78px; background: #1A1408; color: #EDE0BC;
+         border: 0; font-family: 'Noto Serif SC', serif; font-size: 23px;
+         letter-spacing: .18em; display: flex; align-items: center;
+         justify-content: center; gap: 10px; }
+  .cta .arrow { font-family: system-ui, sans-serif; }
+</style>
+</head>
+<body>
+  <div class="status"><span>9:24</span><span>第 12 天 · 连续 5 日</span></div>
+
+  <div class="leaf">
+    <div class="leaf-inner">
+      <div class="tiantou">
+        <span class="shu">识 字 课</span>
+        <span class="zhu">晨起一叶</span>
+      </div>
+
+      <div class="zhengti">
+        <div class="title">今日尚余三事</div>
+        <div class="side">
+          <span class="big">12<span style="font-size:18px">/20</span></span>
+          <span>新字已识</span>
+          <span>正解八成五</span>
+        </div>
+      </div>
+
+      <div class="jie">
+        <div class="ge done">一</div><div class="ge done">二</div><div class="ge done">三</div>
+        <div class="ge done">四</div><div class="ge done">五</div>
+        <div class="ge done">十</div><div class="ge done">百</div><div class="ge done">万</div>
+        <div class="ge done">人</div><div class="ge done">口</div>
+      </div>
+      <div class="jie-label">前十字已识 · 后十字待识</div>
+
+      <div class="mulu">
+        <div class="mu done">
+          <span class="hao">壹</span><span class="ming">听一听</span>
+          <span class="shu">已毕</span><span class="yin">✓</span>
+        </div>
+        <div class="mu">
+          <span class="hao">贰</span><span class="ming">复习 七十四 字</span>
+          <span class="shu">待办</span><span class="yin"></span>
+        </div>
+        <div class="mu">
+          <span class="hao">叁</span><span class="ming">生活数学 · 认钞</span>
+          <span class="shu">三题</span><span class="yin"></span>
+        </div>
+        <div class="mu">
+          <span class="hao">肆</span><span class="ming">科普 · 一日三次</span>
+          <span class="shu">一条</span><span class="yin"></span>
+        </div>
+      </div>
+
+      <div class="dijiao">
+        <button class="cta">接 着 学 <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

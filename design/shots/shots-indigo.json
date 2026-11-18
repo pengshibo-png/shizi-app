@@ -1,0 +1,75 @@
+{
+ "shots": [
+  "01-home-paper",
+  "02-home-ink",
+  "03-encyclopedia",
+  "04-enc-list",
+  "05-enc-card",
+  "06-history",
+  "07-study",
+  "08-mychars",
+  "09-char-sheet"
+ ],
+ "geo": {
+  "vh": 851,
+  "bodyH": 851,
+  "app": {
+   "t": 0,
+   "b": 777,
+   "h": 777,
+   "w": 297
+  },
+  "tiantou": null,
+  "lesson": null,
+  "now": null,
+  "tasks": {
+   "t": 484,
+   "b": 662,
+   "h": 178,
+   "w": 250
+  },
+  "task1": {
+   "t": 484,
+   "b": 544,
+   "h": 59,
+   "w": 250
+  },
+  "dijiao": {
+   "t": 689,
+   "b": 771,
+   "h": 82,
+   "w": 250
+  },
+  "cta": {
+   "t": 689,
+   "b": 771,
+   "h": 82,
+   "w": 250
+  },
+  "tabbar": {
+   "t": 777,
+   "b": 851,
+   "h": 74,
+   "w": 393
+  }
+ },
+ "strokeInfo": {
+  "svg": true,
+  "paths": 66,
+  "hint": "正在写",
+  "rowH": 135,
+  "gap": 0
+ },
+ "sheetGeo": {
+  "sheetH": null,
+  "bottom": null,
+  "vh": 851,
+  "strokeSvg": false
+ },
+ "audit": {
+  "overflow": [],
+  "bodyH": 851,
+  "vh": 851
+ },
+ "errors": []
+}

@@ -1,0 +1,21 @@
+{
+ "html": "design/mockups/A-char.html",
+ "loadedFaces": [
+  {
+   "family": "ShiziWenKai",
+   "status": "loaded"
+  }
+ ],
+ "glyphCheck": true,
+ "widths": {
+  "kai": 800,
+  "sans": 800,
+  "serif": 800
+ },
+ "hanziFontFamily": "ShiziWenKai, \"Kaiti SC\", KaiTi, STKaiti, serif",
+ "hanziFontSize": "340px",
+ "hanziRenderedWidth": 520,
+ "kaiVsSans": 0,
+ "kaiVsSerif": 0,
+ "verdict": "FAIL 仍在用回退字体"
+}

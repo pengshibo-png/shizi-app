@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>四版对比 · 靛墨</title>
+<style>
+  body { margin: 0; padding: 34px 30px 46px; background: #141518; color: #E8E8E6;
+         font-family: -apple-system, "Noto Sans SC", system-ui, sans-serif; }
+  h1 { font-size: 24px; font-weight: 600; margin: 0 0 6px; }
+  .sub { font-size: 13.5px; color: #8B8D93; margin: 0 0 26px; line-height: 1.7; }
+  .sub b { color: #D6D6D2; }
+  .band { margin-bottom: 36px; }
+  .band > h2 { font-size: 14px; font-weight: 600; color: #A8AAB0; margin: 0 0 12px; letter-spacing: .04em; }
+  .row { display: flex; gap: 26px; align-items: flex-start; flex-wrap: wrap; }
+  .card { display: flex; flex-direction: column; gap: 8px; }
+  .card img { height: 500px; width: auto; border-radius: 8px; box-shadow: 0 14px 40px rgba(0,0,0,.5); }
+  .cap { font-size: 12.5px; color: #8B8D93; max-width: 230px; line-height: 1.65; }
+  .cap b { color: #D8D8D4; }
+  .m { display: inline-block; font-size: 11.5px; padding: 2px 7px; border-radius: 4px;
+       background: #26282D; color: #A8AAB0; margin-bottom: 6px; letter-spacing: .03em; }
+  table { border-collapse: collapse; font-size: 13px; margin-top: 6px; }
+  th, td { padding: 7px 14px 7px 0; color: #9EA0A6; text-align: left; font-weight: 400; }
+  th { color: #C8C8C4; font-weight: 600; }
+  td i { font-style: normal; color: #E8E8E6; }
+  .up { color: #8fbf8f; }
+</style>
+</head>
+<body>
+  <h1>四版对比 · 靛墨 · 3500 字</h1>
+  <p class="sub">
+    你说「要简洁、有高级感、有呼吸感、有留白」。我把这几件事变成了可对比的数字 ——
+    <b>留白 9.5% → 32.4%</b>，<b>每屏盒子 20 → 5</b>，<b>强调色 25 处 → 2 处</b>，
+    <b>块间距 45px → 74px</b>。右列是当前版。<br />
+    做法不是"调调字号"，是把东西拿走：删掉印章、图标方块、勾选框、色带进度条、目录简介、
+    卡片底色、纸纤维纹理；强调色从满屏收到只剩那个按钮。
+  </p>
+
+  <div class="band">
+    <h2>首页</h2>
+    <div class="row">
+      <div class="card">
+        <span class="m">初版 · 你判为垃圾</span>
+        <img src="shots/apk-placement-paper.png" alt="初版" />
+        <div class="cap">通用列表 + 暗底琥珀，汉字几乎看不见；主按钮被 TabBar 切掉一截。</div>
+      </div>
+      <div class="card">
+        <span class="m">描红版 · 还是不够简洁</span>
+        <img src="shots/redesign/01-home-paper.png" alt="描红版" />
+        <div class="cap">方向对了（田字格当主角），但<b>执行上把题材变成了装饰</b>：
+          红色格子 + 印章 + 红书签 + 彩色图标 + 四个小格，一屏 28 个盒子、34 处红。</div>
+      </div>
+      <div class="card">
+        <span class="m">靛墨版 · 当前</span>
+        <img src="shots/v3500/01-home-paper.png" alt="当前版" />
+        <div class="cap">一张纸，一个米字格，三行安静的任务，<b>一屏只有按钮是靛青的</b>。
+          分组交给间距（块间 ≥36px），不交给边框。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>当前版其余界面</h2>
+    <div class="row">
+      <div class="card"><img src="shots/v3500/07-study.png" alt="习字" />
+        <div class="cap"><b>习字</b>：字 + 拼音 + 笔顺逐笔演示 + 二选一。答错只是变淡，不出现红边红叉。</div></div>
+      <div class="card"><img src="shots/v3500/03-encyclopedia.png" alt="百科目录" />
+        <div class="cap"><b>百科目录</b>：12 类清单，无底色无边框，留白 60.6%。</div></div>
+      <div class="card"><img src="shots/v3500/06-history.png" alt="我的" />
+        <div class="cap"><b>我的</b>：一行数字 + 七个点 + 一张表。亮度切换也挪到这里（它是设置，不是每天要看的）。</div></div>
+      <div class="card"><img src="shots/v3500/09-char-sheet.png" alt="字详情" />
+        <div class="cap"><b>字详情抽屉</b>：点任意字升起，米字格 + 读音 + 词 + 部首释义 + 笔顺。唯一有阴影的层。</div></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>夜间墨色</h2>
+    <div class="row">
+      <div class="card"><img src="shots/v3500/02-home-ink.png" alt="墨色首页" />
+        <div class="cap">同一套层级，靛黑底；字重降到 500 抵消 OLED 光晕；状态栏/导航条与画布同色（实测 <i>#0D141E</i>，不再是白条）。</div></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>密度指标（脚本实测，均值）</h2>
+    <table>
+      <tr><th>指标</th><th>描红版</th><th>靛墨版</th><th>目标</th></tr>
+      <tr><td>留白 air</td><td>9.5%</td><td class="up"><i>32.4%</i></td><td>≥28%</td></tr>
+      <tr><td>带边框/底色的盒子</td><td>20 / 屏</td><td class="up"><i>5 / 屏</i></td><td>≤8</td></tr>
+      <tr><td>文字块</td><td>27 / 屏</td><td><i>19 / 屏</i></td><td>首页 ≤14</td></tr>
+      <tr><td>块间中位距离</td><td>45px</td><td class="up"><i>74px</i></td><td>≥64px</td></tr>
+      <tr><td>强调色出现次数</td><td>25 / 屏</td><td class="up"><i>2 / 屏</i></td><td>≤4</td></tr>
+    </table>
+    <p class="sub" style="margin-top:14px">
+      对比度 24/24 达标（正文 15.7:1 / 小字 6.2:1 / 按钮 9.6:1 / 格子线 3.2:1）；
+      几何体检 PASS（无溢出、无重叠、无 &lt;56px 热区）；全链路 11/11 · 3500 字 / 175 天；运行时错误 0。
+    </p>
+  </div>
+</body>
+</html>

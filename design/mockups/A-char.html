@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="utf-8" />
+<title>A · 单字页</title>
+<link rel="stylesheet" href="../../packages/ui/src/tokens.css" />
+<style>
+  @font-face {
+    font-family: 'ShiziWenKai';
+    src: url('../../packages/content/assets/fonts/wenkai-subset.woff2') format('woff2');
+    font-display: block;
+  }
+
+  html, body { width: 800px; height: 1280px; overflow: hidden; }
+  body { display: flex; flex-direction: column; padding: 0 var(--shi-page-padding) var(--shi-space-8); }
+
+  /* ---- 顶部：返回 + 进度 ---- */
+  .top { display: flex; align-items: center; gap: var(--shi-space-4); height: 88px; flex: none; }
+  .back { flex: none; width: var(--shi-control-sm); height: var(--shi-control-sm);
+          border-radius: var(--shi-radius-pill); border: 2px solid var(--shi-color-border);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 40px; line-height: 1; color: var(--shi-color-text); }
+  .progress { flex: 1; }
+  .progress .track { height: 16px; border-radius: var(--shi-radius-pill);
+                     background: var(--shi-color-border); overflow: hidden; }
+  .progress .fill { height: 100%; width: 35%; border-radius: var(--shi-radius-pill);
+                    background: var(--shi-color-action); }
+  .progress .lbl { margin-top: var(--shi-space-2); font-size: var(--shi-type-caption);
+                   line-height: 1.2; color: var(--shi-color-text-muted);
+                   font-variant-numeric: tabular-nums; }
+
+  /* ---- 田字格：全 App 唯一用力的元素 ---- */
+  .tianzi { position: relative; margin: var(--shi-space-8) auto 0;
+            width: 520px; height: 520px; flex: none; }
+  .tianzi .frame { position: absolute; inset: 0; border: 2px solid var(--shi-color-grid); }
+  /* 虚线十字用 inset 定位，避免 1px 边框带来的 0.5px 偏移 */
+  .tianzi .hline { position: absolute; left: 0; right: 0; top: 50%; height: 0;
+                   border-top: 1px dashed var(--shi-color-grid); }
+  .tianzi .vline { position: absolute; top: 0; bottom: 0; left: 50%; width: 0;
+                   border-left: 1px dashed var(--shi-color-grid); }
+  .tianzi .hanzi {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--shi-font-hanzi);
+    font-size: 340px; line-height: 1; font-weight: 400;
+    /* 楷体字面偏下，光学居中补偿 */
+    transform: translateY(-2%);
+  }
+
+  /* ---- 读音 / 词组 / 例句 ---- */
+  .readout { margin-top: var(--shi-space-6); flex: none; }
+  .pinyinrow { display: flex; align-items: center; justify-content: center; gap: var(--shi-space-4); }
+  .pinyinrow .py { font-size: var(--shi-type-h2); line-height: 1.2; letter-spacing: .04em; }
+  .speak { flex: none; width: var(--shi-control-speak); height: var(--shi-control-speak);
+           border-radius: var(--shi-radius-pill); border: 2px solid var(--shi-color-grid);
+           display: flex; align-items: center; justify-content: center;
+           font-size: 26px; line-height: 1; }
+  .readout .word { margin-top: var(--shi-space-4); text-align: center;
+                   font-size: var(--shi-type-h2); line-height: 1.25; }
+  .readout .sent { margin-top: var(--shi-space-2); text-align: center;
+                   font-size: var(--shi-type-body-lg); line-height: 1.4;
+                   color: var(--shi-color-text-muted); }
+
+  /* ---- 二选一 ---- */
+  .choices { margin-top: auto; flex: none; display: flex; gap: var(--shi-space-4); }
+  .choice { flex: 1; height: 112px; border-radius: var(--shi-radius-container);
+            border: 2px solid var(--shi-color-grid);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--shi-font-hanzi); font-size: 96px; line-height: 1; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="back">‹</div>
+    <div class="progress">
+      <div class="track"><div class="fill"></div></div>
+      <div class="lbl">第 7 个 / 共 20 个</div>
+    </div>
+  </div>
+
+  <div class="tianzi">
+    <div class="frame"></div>
+    <div class="hline"></div>
+    <div class="vline"></div>
+    <div class="hanzi">重</div>
+  </div>
+
+  <div class="readout">
+    <div class="pinyinrow">
+      <span class="py">zhòng</span>
+      <div class="speak">🔊</div>
+    </div>
+    <div class="word">重要</div>
+    <div class="sent">这个很重要。</div>
+  </div>
+
+  <div class="choices">
+    <div class="choice">重</div>
+    <div class="choice">量</div>
+  </div>
+</body>
+</html>

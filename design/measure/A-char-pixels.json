@@ -1,0 +1,22 @@
+{
+ "html": "design/mockups/A-char.html",
+ "glyphCheck": true,
+ "loadedFaces": [
+  {
+   "family": "ShiziWenKai",
+   "status": "loaded"
+  }
+ ],
+ "inkPixels": {
+  "kai": 5965,
+  "sans": 7653,
+  "serif": 5374
+ },
+ "diffPixels": {
+  "kaiVsSans": 7308,
+  "kaiVsSerif": 6665
+ },
+ "totalPixels": 25600,
+ "kaiDiffersFromSansPct": 28.5,
+ "verdict": "PASS 楷体字形已生效（像素确有差异）"
+}

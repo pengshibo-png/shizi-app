@@ -1,0 +1,108 @@
+{
+ "screens": {
+  "习字首页": {
+   "air": 14.6,
+   "boxes": 6,
+   "boxNames": [
+    "shi-tianzi shi-tianzi--mi is-curre",
+    "shi-tasks",
+    "shi-task",
+    "shi-btn shi-btn--primary"
+   ],
+   "texts": 21,
+   "gapMedian": 38,
+   "gapP90": 104,
+   "accentEls": 2,
+   "accentUnique": [
+    "shi-tianzi shi-tianzi--m",
+    "shi-btn shi-btn--primary"
+   ]
+  },
+  "百科目录": {
+   "air": 34.7,
+   "boxes": 12,
+   "boxNames": [
+    "shi-cat"
+   ],
+   "texts": 30,
+   "gapMedian": 64,
+   "gapP90": 79,
+   "accentEls": 0,
+   "accentUnique": []
+  },
+  "我的": {
+   "air": 24.9,
+   "boxes": 8,
+   "boxNames": [
+    "shi-dot",
+    "shi-hist-list"
+   ],
+   "texts": 16,
+   "gapMedian": 66,
+   "gapP90": 451,
+   "accentEls": 1,
+   "accentUnique": [
+    "shi-dot"
+   ]
+  },
+  "习字页": {
+   "air": 22.1,
+   "boxes": 4,
+   "boxNames": [
+    "shi-tianzi shi-tianzi--mi is-curre",
+    "shi-stroke is-playing",
+    "shi-choice"
+   ],
+   "texts": 9,
+   "gapMedian": 109,
+   "gapP90": 332,
+   "accentEls": 3,
+   "accentUnique": [
+    "shi-progress-fill",
+    "shi-tianzi shi-tianzi--m",
+    "shi-stroke is-playing"
+   ]
+  }
+ },
+ "avg": {
+  "air": 24.1,
+  "boxes": 8,
+  "texts": 19,
+  "gapMedian": 69,
+  "accentEls": 2
+ },
+ "table": [
+  {
+   "屏": "习字首页",
+   "留白": "14.6%",
+   "盒子": 6,
+   "文字块": 21,
+   "中位间距": "38px",
+   "强调色元素": 2
+  },
+  {
+   "屏": "百科目录",
+   "留白": "34.7%",
+   "盒子": 12,
+   "文字块": 30,
+   "中位间距": "64px",
+   "强调色元素": 0
+  },
+  {
+   "屏": "我的",
+   "留白": "24.9%",
+   "盒子": 8,
+   "文字块": 16,
+   "中位间距": "66px",
+   "强调色元素": 1
+  },
+  {
+   "屏": "习字页",
+   "留白": "22.1%",
+   "盒子": 4,
+   "文字块": 9,
+   "中位间距": "109px",
+   "强调色元素": 3
+  }
+ ]
+}

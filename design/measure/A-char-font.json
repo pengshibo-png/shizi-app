@@ -1,0 +1,19 @@
+{
+ "html": "design/mockups/A-char.html",
+ "fontFaceLoaded": [
+  {
+   "family": "ShiziWenKai",
+   "status": "loaded",
+   "weight": "normal"
+  }
+ ],
+ "glyphCheck": true,
+ "computedFamily": "ShiziWenKai, \"Kaiti SC\", KaiTi, STKaiti, serif",
+ "measuredWidths": {
+  "kai": 200,
+  "serif": 200,
+  "sans": 200
+ },
+ "kaiDiffersFromSans": false,
+ "kaiDiffersFromSerif": false
+}

@@ -1,0 +1,73 @@
+{
+ "verdict": "需修",
+ "problems": [
+  "习字页: 溢出 shi-tianzi shi-tianzi--mi is-current裁4px"
+ ],
+ "report": {
+  "习字首页": {
+   "holes": [],
+   "overflow": [],
+   "small": [],
+   "overlap": [],
+   "scroll": {
+    "bodyH": 851,
+    "vh": 851
+   }
+  },
+  "百科目录": {
+   "holes": [],
+   "overflow": [],
+   "small": [],
+   "overlap": [],
+   "scroll": {
+    "bodyH": 851,
+    "vh": 851
+   }
+  },
+  "百科条目": {
+   "holes": [],
+   "overflow": [],
+   "small": [],
+   "overlap": [],
+   "scroll": {
+    "bodyH": 851,
+    "vh": 851
+   }
+  },
+  "学习记录": {
+   "holes": [],
+   "overflow": [],
+   "small": [],
+   "overlap": [],
+   "scroll": {
+    "bodyH": 851,
+    "vh": 851
+   }
+  },
+  "我的字+抽屉": {
+   "holes": [],
+   "overflow": [],
+   "small": [],
+   "overlap": [],
+   "scroll": {
+    "bodyH": 851,
+    "vh": 851
+   }
+  },
+  "习字页": {
+   "holes": [],
+   "overflow": [
+    {
+     "sel": "shi-tianzi shi-tianzi--mi is-current",
+     "clipped": 4
+    }
+   ],
+   "small": [],
+   "overlap": [],
+   "scroll": {
+    "bodyH": 851,
+    "vh": 851
+   }
+  }
+ }
+}

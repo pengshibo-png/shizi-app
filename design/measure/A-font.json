@@ -1,0 +1,19 @@
+{
+ "html": "design/mockups/A-home.html",
+ "fontFaceLoaded": [
+  {
+   "family": "ShiziWenKai",
+   "status": "unloaded",
+   "weight": "normal"
+  }
+ ],
+ "glyphCheck": false,
+ "computedFamily": "\"Noto Sans SC\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+ "measuredWidths": {
+  "kai": 200,
+  "serif": 200,
+  "sans": 200
+ },
+ "kaiDiffersFromSans": false,
+ "kaiDiffersFromSerif": false
+}

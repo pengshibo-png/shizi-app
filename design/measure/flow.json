@@ -1,0 +1,86 @@
+{
+ "url": "http://127.0.0.1:5173/",
+ "steps": [
+  {
+   "step": "home",
+   "h1": "今天还有 3 项",
+   "buttons": [
+    "纸",
+    "生活数学\n1 节\n›",
+    "科普\n1 条\n›",
+    "复习\n暂无\n›",
+    "我的字\n0 / 1800\n›",
+    "▶\n接着学"
+   ]
+  },
+  {
+   "step": "study",
+   "hanzi": "一",
+   "hanziFont": "ShiziWenKai, \"Kaiti SC\", KaiTi, STKaiti, serif",
+   "hanziSize": "340px",
+   "fontLoaded": true,
+   "pinyin": "yī",
+   "choices": [
+    "一",
+    "二"
+   ],
+   "progress": "1 / 20"
+  },
+  {
+   "step": "after-pick",
+   "feedback": null,
+   "rightMarked": 1
+  },
+  {
+   "step": "next-char",
+   "hanzi": "二",
+   "progress": "2 / 20",
+   "learned": 2
+  }
+ ],
+ "audioRequests": [
+  {
+   "url": "二.mp3",
+   "status": 206
+  },
+  {
+   "url": "三.mp3",
+   "status": 206
+  },
+  {
+   "url": "四.mp3",
+   "status": 206
+  },
+  {
+   "url": "五.mp3",
+   "status": 206
+  },
+  {
+   "url": "十.mp3",
+   "status": 206
+  },
+  {
+   "url": "二.mp3",
+   "status": 206
+  },
+  {
+   "url": "三.mp3",
+   "status": 206
+  },
+  {
+   "url": "四.mp3",
+   "status": 206
+  },
+  {
+   "url": "五.mp3",
+   "status": 206
+  },
+  {
+   "url": "十.mp3",
+   "status": 206
+  }
+ ],
+ "audioOk": 12,
+ "audioFail": 0,
+ "errors": []
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window background = ink canvas (1a1714). Keep in sync with the
+         canvas token under the ink theme in packages/ui/src/tokens.css. -->
+    <color name="shi_window_bg">#FF0D141E</color>
+</resources>

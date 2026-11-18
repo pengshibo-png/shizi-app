@@ -1,0 +1,1240 @@
+/* ============================================================================
+ * 应用布局「白纸黑字」
+ *
+ * 上一版被量化出的问题：留白 9.5%、每屏 20 个盒子、25 处强调色。
+ * 这一版的规则：
+ *   1 朱砂只出现在「接着习字」按钮和当前字的格框上，别处一律中性色
+ *   2 分组靠间距（--shi-air-block ≥36px），不靠边框和底色
+ *   3 每屏一个主角：首页是那个大米字格，习字页是字本身
+ *   4 能删的容器就删：图标方块、勾选方框、印章、药丸、色带进度条
+ * ========================================================================== */
+
+#root {
+  height: 100%;
+}
+
+.shi-app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-width: var(--shi-content-max);
+  margin: 0 auto;
+  padding: 0 var(--shi-gap-page);
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------- 顶栏 */
+
+.shi-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--shi-space-3);
+  min-height: 56px;
+  flex: none;
+}
+
+.shi-topbar-title {
+  font-size: var(--shi-text-lg);
+  line-height: 1.2;
+  font-weight: var(--shi-weight-strong);
+}
+
+.shi-caption {
+  font-size: var(--shi-text-sm);
+  color: var(--shi-color-text-muted);
+}
+
+/* ---------------------------------------------------------------- 首页 */
+
+.shi-home-top {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shi-date {
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* 连续天数：赭金点睛，整屏唯一的第二处彩色，面积极小 */
+.shi-streak {
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-gold);
+  letter-spacing: 0.02em;
+}
+
+/* 主角区：标题 + 一个格 + 拼音 + 接下来几个字 */
+.shi-hero {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--shi-air-tight);
+}
+
+.shi-hero-title {
+  font-size: var(--shi-text-xl);
+  line-height: 1.2;
+  font-weight: var(--shi-weight-strong);
+  text-align: center;
+}
+
+.shi-hero-grid {
+  /* 三个上限都取：小屏/矮屏自动缩小，绝不把下面的任务行挤到按钮上 */
+  width: min(232px, 56vw, 27vh);
+  aspect-ratio: 1;
+  margin-top: var(--shi-air-tight);
+}
+
+.shi-hero-grid .shi-tianzi {
+  width: 100%;
+  height: 100%;
+}
+
+.shi-hero-blank {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: var(--shi-grid-line) dashed var(--shi-color-grid);
+  border-radius: var(--shi-radius-sm);
+  color: var(--shi-color-text-muted);
+  font-size: var(--shi-text-md);
+}
+
+.shi-hero-meta {
+  min-height: 28px;
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 18px;
+}
+
+.shi-hero-py {
+  font-size: var(--shi-text-lg);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.shi-hero-count {
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+}
+
+/* 接下来的字：一行淡墨，没有格子没有框 */
+.shi-rest {
+  margin-top: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 5vw, 26px);
+}
+
+.shi-rest-char {
+  font-family: var(--shi-font-hanzi);
+  font-size: clamp(26px, 7vw, 34px);
+  line-height: 1;
+  color: var(--shi-color-faint);
+}
+
+/* 任务：纯文字行 + 发丝分隔线，没有图标方块和勾选框 */
+  .shi-tasks {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: var(--shi-air-block);
+  border-top: var(--shi-hairline) solid var(--shi-color-rule);
+}
+
+  .shi-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 56px;
+  padding: 0 2px;
+  text-align: left;
+  border-bottom: var(--shi-hairline) solid var(--shi-color-rule);
+  transition: color var(--shi-motion-micro) var(--shi-ease-standard);
+}
+
+.shi-task:last-child {
+  border-bottom: 0;
+}
+
+/* 「我的」页里的入口行：只有一行，不需要 flex 撑开 */
+.shi-entry {
+  flex: none;
+  margin-top: var(--shi-air-tight);
+  display: flex;
+  flex-direction: column;
+  border-top: var(--shi-hairline) solid var(--shi-color-rule);
+}
+
+.shi-entry .shi-task {
+  flex: none;
+}
+
+.shi-task:active {
+  opacity: 0.55;
+}
+
+.shi-task-name {
+  font-size: var(--shi-text-md);
+  line-height: 1.25;
+  color: var(--shi-color-text);
+}
+
+.shi-task-meta {
+  flex: none;
+  text-align: right;
+  font-size: var(--shi-text-sm);
+  line-height: 1.25;
+  color: var(--shi-color-text-muted);
+  font-variant-numeric: tabular-nums;
+  max-width: 46%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shi-pace-note {
+  flex: none;
+  font-size: var(--shi-text-sm);
+  line-height: 1.4;
+  color: var(--shi-color-text-muted);
+  text-align: center;
+  padding-top: 10px;
+}
+
+.shi-dijiao {
+  flex: none;
+  margin-top: var(--shi-air-tight);
+}
+
+/* ---------------------------------------------------------------- Tab 框架 */
+
+.shi-tabbed {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--shi-color-canvas);
+}
+
+.shi-tab-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.shi-tabbed .shi-app {
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+  padding-bottom: 6px;
+}
+
+/* TabBar：没有色块没有书签线，选中只靠字色和字重 */
+.shi-tabbar {
+  flex: none;
+  display: flex;
+  gap: 2px;
+  padding: 4px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+  background: var(--shi-color-canvas);
+}
+
+.shi-tab {
+  flex: 1;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: var(--shi-radius-control);
+  color: var(--shi-color-text-muted);
+  transition: color var(--shi-motion-micro) var(--shi-ease-standard);
+}
+
+.shi-tab:active {
+  opacity: 0.6;
+}
+
+.shi-tab.is-active {
+  color: var(--shi-color-text);
+}
+
+.shi-tab-icon {
+  display: flex;
+  line-height: 0;
+}
+
+.shi-tab-label {
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+}
+
+.shi-tab.is-active .shi-tab-label {
+  font-weight: var(--shi-weight-strong);
+}
+
+/* ---------------------------------------------------------------- 单字页 */
+
+.shi-charpage {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-width: var(--shi-content-max);
+  margin: 0 auto;
+  padding: 0 var(--shi-gap-page);
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+.shi-charpage .shi-tianzi-wrap {
+  margin: var(--shi-air-tight) auto 0;
+  flex: none;
+  /* 高度上限从 42vh 收到 32vh：单字页还要放读音、词、部首、笔顺、两个选项，
+     42vh 时总高超出视口，笔顺格会压到选项按钮上（用户截图实测）。 */
+  width: min(360px, 32vh, 70vw);
+  aspect-ratio: 1;
+}
+
+.shi-charpage .shi-tianzi-wrap .shi-tianzi {
+  width: 100%;
+  height: 100%;
+}
+
+.shi-readout {
+  margin-top: clamp(12px, 2.2vh, 22px);
+  flex: none;
+  text-align: center;
+}
+
+.shi-pinyinrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.shi-pinyinrow .shi-py {
+  font-size: var(--shi-text-xl);
+  line-height: 1;
+  font-weight: var(--shi-weight-strong);
+  color: var(--shi-color-text);
+  letter-spacing: 0.02em;
+}
+
+.shi-readout .shi-word {
+  margin-top: 12px;
+  font-family: var(--shi-font-hanzi);
+  font-size: var(--shi-text-lg);
+  line-height: 1.3;
+}
+
+.shi-readout .shi-gloss {
+  margin-top: 8px;
+  font-size: var(--shi-text-sm);
+  line-height: 1.5;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-readout .shi-gloss .shi-radical {
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--shi-color-text-muted);
+}
+
+/* 二选一：中性细框，答对变石绿，答错只是变淡（不红不叉）。
+   margin-top:auto 把它钉在页脚，上方元素再高也不会盖住它。 */
+.shi-choices {
+  flex: none;
+  margin-top: auto;
+  display: flex;
+  gap: clamp(12px, 3vw, 18px);
+  padding-top: clamp(12px, 2vh, 20px);
+}
+
+.shi-choice {
+  flex: 1;
+  min-height: clamp(76px, 10vh, 92px);
+  border-radius: var(--shi-radius-control);
+  border: var(--shi-rule) solid var(--shi-color-grid);
+  background: transparent;
+  font-size: var(--shi-text-lg);
+  font-weight: var(--shi-weight-strong);
+  line-height: 1.2;
+  transition:
+    transform var(--shi-motion-press-down) var(--shi-ease-out),
+    border-color var(--shi-motion-micro) var(--shi-ease-standard),
+    color var(--shi-motion-micro) var(--shi-ease-standard);
+}
+
+.shi-choice:active {
+  transform: scale(0.99);
+}
+
+.shi-choice.is-right {
+  border-color: var(--shi-color-success);
+  color: var(--shi-color-success);
+}
+
+.shi-choice.is-wrong {
+  border-color: var(--shi-color-grid-soft);
+  color: var(--shi-color-faint);
+}
+
+.shi-feedback {
+  flex: none;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.shi-feedback .shi-fb-text {
+  font-size: var(--shi-text-md);
+  line-height: 1.5;
+  color: var(--shi-color-text-muted);
+}
+
+/* ---------------------------------------------------------------- 笔顺 */
+
+/* 笔顺行：必须 flex:none。
+   原先是 flex:1 + min-height:0 —— 空间不足时这一行被压扁，
+   但里面固定尺寸的笔顺格不会跟着缩，于是溢出压到下面的选项按钮上。
+   现在它按内容占高，主角格用 vh 上限让位，总高一定装得下。 */
+.shi-stroke-row {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 28px);
+  margin-top: var(--shi-air-tight);
+}
+
+.shi-stroke-side {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shi-stroke-count {
+  font-size: var(--shi-text-md);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-stroke {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: var(--shi-rule) solid var(--shi-color-grid);
+  border-radius: var(--shi-radius-sm);
+  background: transparent;
+  overflow: hidden;
+  /* 尺寸交给 CSS，随屏收缩。原先写在组件 inline style 里，
+     矮屏上不会缩，笔顺格就压到下面的选项按钮上（用户截图实测）。 */
+  width: clamp(92px, 24vw, 124px);
+  height: clamp(92px, 24vw, 124px);
+}
+
+.shi-stroke:active {
+  opacity: 0.7;
+}
+
+.shi-stroke.is-playing {
+  border-color: var(--shi-color-grid-active);
+}
+
+.shi-stroke-canvas {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+}
+
+/* hanzi-writer 生成固定 width/height 的 SVG，这里让它跟着容器缩放 */
+.shi-stroke-canvas svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 提示从红色缎带改成格下的一行小字 */
+.shi-stroke-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2px 0;
+  background: transparent;
+  color: var(--shi-color-text-muted);
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+}
+
+.shi-stroke--empty {
+  display: grid;
+  place-items: center;
+  border: var(--shi-rule) dashed var(--shi-color-grid);
+  border-radius: var(--shi-radius-sm);
+  font-size: var(--shi-text-sm);
+  color: var(--shi-color-text-muted);
+}
+
+/* ---------------------------------------------------------------- 我认得的字 */
+
+.shi-chips {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  margin-top: 10px;
+}
+
+/* 筛选从三个方块按钮变成三个文字标签，选中加下划线 */
+.shi-chip {
+  flex: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  min-height: 48px;
+  padding: 0 2px 4px;
+  background: transparent;
+  font-size: var(--shi-text-md);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  border-bottom: 2px solid transparent;
+}
+
+.shi-chip b {
+  font-size: var(--shi-text-sm);
+  font-weight: var(--shi-weight-strong);
+  font-variant-numeric: tabular-nums;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-chip.is-on {
+  color: var(--shi-color-text);
+  border-bottom-color: var(--shi-color-text);
+}
+
+.shi-chip.is-on b {
+  color: var(--shi-color-text-muted);
+}
+
+.shi-grid {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: var(--shi-air-tight);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 10px;
+  align-content: start;
+  padding-bottom: 12px;
+}
+
+.shi-cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 2px 3px;
+  border: var(--shi-hairline) solid var(--shi-color-grid);
+  border-radius: var(--shi-radius-sm);
+  background: transparent;
+  overflow: hidden;
+}
+
+.shi-cell:active {
+  opacity: 0.6;
+}
+
+.shi-cell-char {
+  font-family: var(--shi-font-hanzi);
+  font-size: clamp(30px, 8vw, 40px);
+  line-height: 1;
+  color: var(--shi-color-text);
+}
+
+.shi-cell-flag {
+  display: none; /* 状态靠字的深浅区分：墨=学会，淡=在学；文字标签删掉 */
+}
+
+.shi-cell.is-mastered {
+  border-color: var(--shi-color-grid);
+}
+
+.shi-cell.is-learning {
+  border-color: var(--shi-color-grid-soft);
+}
+
+.shi-cell.is-learning .shi-cell-char {
+  color: var(--shi-color-faint);
+}
+
+.shi-pager {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding-top: 10px;
+  font-size: var(--shi-text-sm);
+  color: var(--shi-color-text-muted);
+}
+
+.shi-pager-btn {
+  min-height: 56px;
+  padding: 0 14px;
+  background: transparent;
+  font-size: var(--shi-text-sm);
+  color: var(--shi-color-text-muted);
+}
+
+.shi-pager-btn:disabled {
+  opacity: 0.35;
+}
+
+/* ---------------------------------------------------------------- 抽屉 */
+
+.shi-sheet-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: color-mix(in srgb, var(--shi-color-text) 32%, transparent);
+  animation: shi-fade var(--shi-motion-small) var(--shi-ease-standard);
+}
+
+@keyframes shi-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.shi-sheet {
+  width: 100%;
+  max-width: var(--shi-content-max);
+  max-height: 88dvh;
+  overflow-y: auto;
+  padding: 8px var(--shi-gap-page) calc(20px + env(safe-area-inset-bottom, 0px));
+  border-radius: var(--shi-radius-overlay) var(--shi-radius-overlay) 0 0;
+  background: var(--shi-color-canvas);
+  box-shadow: var(--shi-shadow-overlay);
+  animation: shi-rise var(--shi-motion-medium) var(--shi-ease-out);
+}
+
+@keyframes shi-rise {
+  from { transform: translateY(18px); }
+  to { transform: translateY(0); }
+}
+
+.shi-sheet-grip {
+  width: 36px;
+  height: 3px;
+  margin: 4px auto 10px;
+  border-radius: 2px;
+  background: var(--shi-color-grid);
+}
+
+.shi-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.shi-sheet-title {
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  letter-spacing: 0.08em;
+}
+
+.shi-sheet-close {
+  width: 56px;
+  height: 56px;
+  margin-right: -12px;
+  border-radius: var(--shi-radius-control);
+  font-size: 20px;
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-sheet-close:active {
+  opacity: 0.6;
+}
+
+.shi-sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.shi-sheet-grid {
+  width: min(220px, 52vw);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.shi-sheet-grid .shi-tianzi {
+  width: 100%;
+  height: 100%;
+}
+
+.shi-sheet-info {
+  text-align: center;
+}
+
+.shi-sheet-word {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--shi-font-hanzi);
+  font-size: var(--shi-text-lg);
+  line-height: 1.3;
+}
+
+.shi-sheet-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: var(--shi-hairline) solid var(--shi-color-rule);
+}
+
+/* ---------------------------------------------------------------- 百科 */
+
+/* 目录从 12 个带色边的卡片变成安静的两列文字清单 */
+.shi-cat-grid {
+  margin-top: var(--shi-air-tight);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+  padding-bottom: 16px;
+}
+
+/* 目录 = 两列安静的清单：名字 + 条数。
+   不画分割线 —— 68px 的行高和字色已经足够分组，加线只是又多 12 个「盒子」。 */
+.shi-cat {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 72px;
+  padding: 0 2px;
+  background: transparent;
+  text-align: left;
+}
+
+.shi-cat:active {
+  opacity: 0.55;
+}
+
+.shi-cat-name {
+  font-size: var(--shi-text-md);
+  line-height: 1.2;
+  color: var(--shi-color-text);
+}
+
+.shi-cat.is-all-seen .shi-cat-name {
+  color: var(--shi-color-text-muted);
+}
+
+.shi-cat-count {
+  flex: none;
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.shi-enc-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-bottom: 16px;
+}
+
+.shi-enc-item {
+  border-bottom: var(--shi-hairline) solid var(--shi-color-rule);
+  background: transparent;
+}
+
+.shi-enc-item.is-open {
+  border-left: 0;
+  padding-left: 0;
+  background: transparent;
+}
+
+.shi-enc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 72px;
+  padding: 0 2px;
+  text-align: left;
+}
+
+.shi-enc-row:active {
+  opacity: 0.55;
+}
+
+.shi-enc-title {
+  flex: 1;
+  font-size: var(--shi-text-md);
+  line-height: 1.3;
+}
+
+.shi-enc-state {
+  flex: none;
+  font-size: var(--shi-text-sm);
+  color: var(--shi-color-text-muted);
+}
+
+.shi-enc-body {
+  padding: 4px 2px 22px;
+}
+
+.shi-enc-text {
+  font-size: var(--shi-text-md);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.shi-enc-q {
+  margin-top: 18px;
+  font-size: var(--shi-text-md);
+  font-weight: var(--shi-weight-strong);
+  line-height: 1.4;
+}
+
+.shi-enc-opts {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.shi-enc-opt {
+  flex: 1;
+  min-height: 60px;
+  border-radius: var(--shi-radius-control);
+  border: var(--shi-rule) solid var(--shi-color-grid);
+  background: transparent;
+  font-size: var(--shi-text-md);
+}
+
+.shi-enc-opt.is-right {
+  border-color: var(--shi-color-success);
+  color: var(--shi-color-success);
+}
+
+.shi-enc-opt.is-wrong {
+  border-color: var(--shi-color-grid-soft);
+  color: var(--shi-color-faint);
+}
+
+.shi-enc-explain {
+  margin-top: 12px;
+  font-size: var(--shi-text-sm);
+  line-height: 1.5;
+  color: var(--shi-color-text-muted);
+}
+
+/* ---------------------------------------------------------------- 每日一条 */
+
+.shi-scicard {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-bottom: 12px;
+}
+
+.shi-scicard .shi-sci-theme {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  letter-spacing: 0.08em;
+}
+
+.shi-scicard .shi-sci-title {
+  margin-top: 12px;
+  font-size: var(--shi-text-xl);
+  line-height: 1.25;
+  font-weight: var(--shi-weight-strong);
+  text-wrap: balance;
+}
+
+.shi-scicard .shi-sci-body {
+  margin-top: 18px;
+  font-size: var(--shi-text-md);
+  line-height: 1.8;
+}
+
+.shi-scicard .shi-sci-q {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: var(--shi-hairline) solid var(--shi-color-rule);
+  font-size: var(--shi-text-lg);
+  line-height: 1.4;
+  font-weight: var(--shi-weight-strong);
+}
+
+/* ---------------------------------------------------------------- 数学 */
+
+.shi-math-head {
+  flex: none;
+  margin-top: 4px;
+}
+
+.shi-math-head .shi-mod {
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  letter-spacing: 0.08em;
+}
+
+.shi-math-head h1 {
+  margin-top: 10px;
+  font-size: var(--shi-text-xl);
+  line-height: 1.2;
+  font-weight: var(--shi-weight-strong);
+}
+
+.shi-math-script {
+  flex: none;
+  margin-top: 16px;
+  font-size: var(--shi-text-md);
+  line-height: 1.7;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-math-prompt {
+  flex: none;
+  margin-top: var(--shi-air-block);
+  font-size: var(--shi-text-lg);
+  line-height: 1.4;
+  font-weight: var(--shi-weight-strong);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.shi-math-opts {
+  flex: none;
+  margin-top: var(--shi-air-tight);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shi-math-opt {
+  min-height: clamp(68px, 9vh, 82px);
+  border-radius: var(--shi-radius-control);
+  border: var(--shi-rule) solid var(--shi-color-grid);
+  background: transparent;
+  font-size: var(--shi-text-lg);
+  font-weight: var(--shi-weight-strong);
+  transition:
+    transform var(--shi-motion-press-down) var(--shi-ease-out),
+    border-color var(--shi-motion-micro) var(--shi-ease-standard);
+}
+
+.shi-math-opt:active {
+  transform: scale(0.99);
+}
+
+.shi-math-opt.is-right {
+  border-color: var(--shi-color-success);
+  color: var(--shi-color-success);
+}
+
+.shi-math-opt.is-wrong {
+  border-color: var(--shi-color-grid-soft);
+  color: var(--shi-color-faint);
+}
+
+/* ---------------------------------------------------------------- 我的 / 记录 */
+
+/* 一行数字 + 一行说明，不用卡片不用色条 */
+.shi-sum {
+  flex: none;
+  margin-top: var(--shi-air-block);
+  font-size: var(--shi-text-xl);
+  line-height: 1.2;
+  font-weight: var(--shi-weight-strong);
+}
+
+.shi-sum b {
+  font-weight: var(--shi-weight-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.shi-sum-sub {
+  flex: none;
+  margin-top: 10px;
+  font-size: var(--shi-text-sm);
+  line-height: 1.4;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-week {
+  flex: none;
+  margin-top: var(--shi-air-block);
+}
+
+.shi-week-head {
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+  margin-bottom: 18px;
+}
+
+.shi-week-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.shi-week-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 学过的日子 = 一个实心点，没学 = 空心圈。七个点，不是七个格子 */
+.shi-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--shi-color-grid);
+  background: transparent;
+}
+
+.shi-dot.is-did {
+  background: var(--shi-color-text);
+  border-color: var(--shi-color-text);
+}
+
+.shi-week-cell.is-today .shi-dot {
+  border-color: var(--shi-color-action);
+}
+
+.shi-week-label {
+  font-size: 13px;
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-week-cell.is-today .shi-week-label {
+  color: var(--shi-color-text);
+}
+
+.shi-hist-list {
+  margin-top: var(--shi-air-block);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  border-top: var(--shi-hairline) solid var(--shi-color-rule);
+}
+
+.shi-hist-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 1fr 1fr 52px;
+  align-items: center;
+  gap: 6px;
+  min-height: 56px;
+  border-bottom: var(--shi-hairline) solid var(--shi-color-rule);
+  font-size: var(--shi-text-sm);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.shi-hist-date {
+  color: var(--shi-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.shi-hist-new {
+  color: var(--shi-color-text);
+}
+
+.shi-hist-rev,
+.shi-hist-acc {
+  color: var(--shi-color-text-muted);
+  text-align: center;
+}
+
+.shi-hist-time {
+  text-align: right;
+  color: var(--shi-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 「我的」页顶部的亮度切换：一个安静的文字按钮 */
+  .shi-theme-btn {
+  min-height: 56px;
+  min-width: 56px;
+  padding: 0 10px;
+  border-radius: var(--shi-radius-control);
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-theme-btn:active {
+  opacity: 0.6;
+}
+
+/* ---------------------------------------------------------------- 摸底 */
+
+.shi-place-note {
+  margin-top: 10px;
+  flex: none;
+  text-align: center;
+  font-size: var(--shi-text-sm);
+  line-height: 1.5;
+  color: var(--shi-color-text-muted);
+  padding: 0 8px;
+}
+
+.shi-place-skip {
+  flex: none;
+  margin-top: 16px;
+  width: 100%;
+  min-height: 64px;
+  border-radius: var(--shi-radius-control);
+  border: 0;
+  background: transparent;
+  font-size: var(--shi-text-sm);
+  color: var(--shi-color-text-muted);
+}
+
+/* ---------------------------------------------------------------- 通用 */
+
+.shi-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.shi-center .shi-big {
+  font-size: var(--shi-text-xl);
+  line-height: 1.25;
+  font-weight: var(--shi-weight-strong);
+}
+
+.shi-center .shi-dim {
+  font-size: var(--shi-text-sm);
+  line-height: 1.5;
+  color: var(--shi-color-text-muted);
+  max-width: 28ch;
+}
+
+.shi-skel {
+  border-radius: var(--shi-radius-control);
+  background: linear-gradient(
+    90deg,
+    var(--shi-color-sunken) 0%,
+    var(--shi-color-rule) 50%,
+    var(--shi-color-sunken) 100%
+  );
+  background-size: 200% 100%;
+  animation: shi-shimmer 1.4s var(--shi-ease-standard) infinite;
+}
+
+@keyframes shi-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.shi-empty {
+  padding: 48px 0;
+  text-align: center;
+  font-size: var(--shi-text-md);
+  color: var(--shi-color-text-muted);
+}
+
+/* 兼容旧类名 */
+.shi-head {
+  flex: none;
+  margin-top: 6px;
+}
+
+.shi-head h1 {
+  font-size: var(--shi-text-xl);
+  line-height: 1.2;
+  font-weight: var(--shi-weight-strong);
+}
+
+.shi-bottom {
+  flex: none;
+  margin-top: var(--shi-air-tight);
+}
+
+.shi-lamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 48px;
+  padding: 0 10px;
+  border-radius: var(--shi-radius-pill);
+  background: transparent;
+  font-size: var(--shi-text-sm);
+  line-height: 1;
+  color: var(--shi-color-text-muted);
+}
+
+.shi-lamp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--shi-color-grid);
+  background: transparent;
+}

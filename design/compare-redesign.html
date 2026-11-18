@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>改造前后 · 描红</title>
+<style>
+  body { margin: 0; padding: 34px 30px 46px; background: #16171A; color: #E8E8E6;
+         font-family: -apple-system, "Noto Sans SC", system-ui, sans-serif; }
+  h1 { font-size: 25px; font-weight: 600; margin: 0 0 4px; }
+  .sub { font-size: 13.5px; color: #8B8D93; margin: 0 0 26px; line-height: 1.7; }
+  .band { margin-bottom: 34px; }
+  .band > h2 { font-size: 15px; font-weight: 600; color: #A8AAB0; margin: 0 0 12px;
+               letter-spacing: .04em; }
+  .row { display: flex; gap: 26px; align-items: flex-start; flex-wrap: wrap; }
+  .card { display: flex; flex-direction: column; gap: 8px; }
+  .card img { height: 560px; width: auto; border-radius: 8px;
+              box-shadow: 0 14px 40px rgba(0,0,0,.5); }
+  .cap { font-size: 12.5px; color: #8B8D93; max-width: 258px; line-height: 1.6; }
+  .cap b { color: #D8D8D4; font-weight: 600; }
+  .note { margin-top: 8px; font-size: 12.5px; color: #7A7D84; line-height: 1.75;
+          max-width: 900px; }
+</style>
+</head>
+<body>
+  <h1>改造前后</h1>
+  <p class="sub">
+    左：您判为垃圾的那版（通用列表 + 暗底琥珀 + 卡片）。右：新版「描红」——版面来自描红习字本。<br />
+    新版每一屏都能核到实测数据：对比度 22/22 达标、无内容落在折叠线以下、运行时错误 0。
+  </p>
+
+  <div class="band">
+    <h2>首页</h2>
+    <div class="row">
+      <div class="card">
+        <img src="shots/apk-placement-paper.png" alt="改造前" />
+        <div class="cap"><b>改造前</b>：标题「今天开始学」+ 进度环 + 四条通用列表，
+          汉字只有 5 个小字；主按钮被 TabBar 切掉只剩一条边。</div>
+      </div>
+      <div class="card">
+        <img src="shots/redesign/01-home-paper.png" alt="改造后首页" />
+        <div class="cap"><b>改造后</b>：朱砂格占主角位 —— 当前字大米字格、
+          待学的字淡朱（描红引导）；右上角方印记连续天数；任务用界栏分栏。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>习字（核心动作）</h2>
+    <div class="row">
+      <div class="card">
+        <img src="shots/redesign/07-study.png" alt="习字页" />
+        <div class="cap"><b>笔顺逐笔演示</b>（1800/1800 字全覆盖）：轮廓淡朱、笔画墨、
+          当前笔朱砂，点一下重播。这一屏原本有大片空白，现在被教学动作用掉。</div>
+      </div>
+      <div class="card">
+        <img src="shots/redesign/09-char-sheet.png" alt="字详情抽屉" />
+        <div class="cap"><b>字详情</b>：从「我认得的字」点任意一格升起抽屉，
+          米字格 + 读音 + 词 + 部首释义 + 笔顺。这页因此变成她随时能翻的字典。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>生活百科（12 大类 215 条）</h2>
+    <div class="row">
+      <div class="card">
+        <img src="shots/redesign/03-encyclopedia.png" alt="百科目录" />
+        <div class="cap"><b>目录</b>：12 类书签条，左侧颜料色竖边；
+          手机使用 57 条（微信往外打视频、付款码、存储不足…）排最前。</div>
+      </div>
+      <div class="card">
+        <img src="shots/redesign/05-enc-card.png" alt="百科条目" />
+        <div class="cap"><b>条目</b>：展开即读即听，末尾一道判断题。
+          从「被安排的每日一条」变成「她自己的工具书」。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <h2>记录 / 夜间</h2>
+    <div class="row">
+      <div class="card">
+        <img src="shots/redesign/06-history.png" alt="学习记录" />
+        <div class="cap"><b>学习记录</b>：四个大数字 + 三段总进度 +
+          近七日描红格（学满填墨）。</div>
+      </div>
+      <div class="card">
+        <img src="shots/redesign/02-home-ink.png" alt="夜间墨色" />
+        <div class="cap"><b>墨（18:00 后）</b>：暖黑底 + 提亮朱砂，
+          字重下调一档补偿 OLED 光晕；状态栏已跟主题同步，不再顶白条。</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">
+    说明：几何、对比度、音频与内容完整性均为脚本实测；截图由我在 393×851 视口渲染，
+    但执行环境当前不声明图像输入，<b>主观观感仍需您在真机上看</b>。
+    您要是觉得哪里还不对，说具体哪一屏哪个位置，我照改。
+  </p>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>C · 年画</title>
+<link rel="stylesheet" href="../../packages/ui/src/tokens.css" />
+<style>
+  @font-face {
+    font-family: 'ShiziWenKai';
+    src: url('../../packages/content/assets/fonts/wenkai-subset.woff2') format('woff2');
+    font-display: block;
+  }
+
+  /* C 案：年画。取"春节门神年画的配色与双线框"——朱红、石绿、藤黄，
+     比 A 更热烈，但有传统版画的克制，不是儿童 App 的糖果色。
+     风险：颜色更重，长时间阅读可能比 A 累；胜在有年味、老人有亲切感。 */
+  html, body { width: 800px; height: 1280px; overflow: hidden; }
+  body {
+    display: flex; flex-direction: column;
+    padding: 0 28px 28px;
+    --c-paper: #f7f0df;
+    --c-ink: #231a12;
+    --c-muted: #5d4a35;
+    --c-red: #b8362a;
+    --c-green: #4e7a5a;
+    --c-gold: #d9a441;
+    background: var(--c-paper);
+    color: var(--c-ink);
+  }
+
+  /* 双线外框：年画的画框 */
+  .frame {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 4px;
+    border: 3px solid var(--c-red);
+    box-shadow: inset 0 0 0 6px var(--c-paper), inset 0 0 0 8px var(--c-red);
+    margin-top: 20px;
+    padding: 24px;
+  }
+
+  .top { display: flex; align-items: center; justify-content: space-between; height: 40px; flex: none;
+         font-size: 24px; line-height: 1; color: var(--c-muted); }
+
+  .greet { margin-top: 28px; }
+  .greet h1 {
+    font-family: var(--shi-font-hanzi);
+    font-size: 84px; line-height: 1.08; font-weight: 400;
+  }
+  .greet .sub { margin-top: 14px; font-size: 26px; line-height: 1.4; color: var(--c-muted); }
+
+  .today { margin-top: 40px; display: flex; align-items: center; gap: 28px;
+           background: #fffaf0; border: 2px solid var(--c-gold);
+           padding: 24px 28px; }
+  .today .num { font-size: 116px; line-height: 0.86; font-weight: 600; color: var(--c-red);
+                font-variant-numeric: tabular-nums; }
+  .today .num small { font-size: 40px; font-weight: 400; color: var(--c-ink); }
+  .today .txt .k { font-size: 38px; line-height: 1.25; }
+  .today .txt .v { margin-top: 8px; font-size: 24px; line-height: 1.4; color: var(--c-muted); }
+
+  .rows { margin-top: 36px; flex: 1; }
+  .row { display: flex; align-items: center; gap: 16px; height: 96px; }
+  .row .mark { flex: none; width: 44px; height: 44px; display: flex; align-items: center;
+               justify-content: center; font-size: 24px; line-height: 1; }
+  .row.done .mark { background: var(--c-green); color: #fffaf0; }
+  .row.todo .mark { border: 2px solid var(--c-gold); }
+  .row .name { flex: 1; font-size: 30px; line-height: 1.2; }
+  .row .meta { flex: none; width: 116px; text-align: right; font-size: 24px; line-height: 1.2;
+               color: var(--c-muted); font-variant-numeric: tabular-nums; }
+
+  .cta { flex: none; height: 96px; background: var(--c-red); color: #fffaf0;
+         display: flex; align-items: center; justify-content: center; gap: 16px;
+         font-size: 32px; font-weight: 500; line-height: 1; letter-spacing: .06em; }
+</style>
+</head>
+<body>
+  <div class="top"><span>9:24</span><span>晴 18°</span></div>
+
+  <div class="frame">
+    <div class="greet">
+      <h1>今天还剩<br />3 项</h1>
+      <div class="sub">昨天学了 20 个字，正确率 85%</div>
+    </div>
+
+    <div class="today">
+      <div class="num">12<small>/20</small></div>
+      <div class="txt">
+        <div class="k">今天的新字</div>
+        <div class="v">已学 12 个，还差 8 个</div>
+      </div>
+    </div>
+
+    <div class="rows">
+      <div class="row done"><div class="mark">✓</div><div class="name">听一听</div><div class="meta">已完成</div></div>
+      <div class="row todo"><div class="mark"></div><div class="name">复习 74 个字</div><div class="meta">还剩 74</div></div>
+      <div class="row todo"><div class="mark"></div><div class="name">生活数学 · 认识人民币</div><div class="meta">3 题</div></div>
+      <div class="row todo"><div class="mark"></div><div class="name">科普 · 一日三次</div><div class="meta">1 条</div></div>
+    </div>
+
+    <div class="cta">接着学</div>
+  </div>
+</body>
+</html>

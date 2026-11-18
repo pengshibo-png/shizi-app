@@ -1,0 +1,14 @@
+{
+ "url": "http://127.0.0.1:5173/",
+ "hanziChar": "一",
+ "hanziFontFamily": "ShiziWenKai, \"Kaiti SC\", KaiTi, STKaiti, serif",
+ "hanziFontSize": "340px",
+ "loadedFaces": [
+  {
+   "family": "ShiziWenKai",
+   "status": "loaded"
+  }
+ ],
+ "pixelDiffPct": 28.5,
+ "verdict": "PASS 楷体在真实 App 中生效"
+}
