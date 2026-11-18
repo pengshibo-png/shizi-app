@@ -45,7 +45,15 @@ function readText(p) {
 // ---------------------------------------------------------------- 载入来源
 
 const level1Path = join(CACHE, 'level-1.txt');
-if (!existsSync(level1Path)) die(`缺少一级字表缓存: ${level1Path}\n先运行 scripts/fetch-level1.ps1 或手动下载。`);
+// 一级字表只有 13.7 KB，且是《通用规范汉字表》原文，已随仓库分发（见 .gitignore 例外）。
+// 正常克隆不会走到这个分支；真缺了说明仓库被裁剪过。
+if (!existsSync(level1Path)) {
+  die(
+    `缺少一级字表: ${level1Path}\n` +
+      '该文件应随仓库分发（13.7 KB）。若确实丢失，可从教育部公布的《通用规范汉字表》' +
+      '一级字表复制 3500 字到此文件（每行不限，脚本会去掉空白）。',
+  );
+}
 const level1 = readText(level1Path).replace(/[\r\n\s]/g, '');
 if (level1.length !== 3500) die(`一级字表应为 3500 字，实际 ${level1.length}`);
 
@@ -307,6 +315,29 @@ const out = {
 };
 
 mkdirSync(DATA, { recursive: true });
+
+// 防呆：本步骤**重写** characters.json，会抹掉后续两个阶段加进来的字段
+// （build-words 的 wordIds、enrich-characters 的 radical/gloss 与覆盖率统计）。
+// 这个坑是实测踩到的：单独重跑 content:chars 后，3500 字的词组链接与释义全丢，
+// diff 显示 -28514 行。所以要么跑完整链，要么按提示补跑后两步。
+const prevPath = join(DATA, 'characters.json');
+if (existsSync(prevPath)) {
+  try {
+    const prev = JSON.parse(readText(prevPath));
+    const enriched = (prev.characters ?? []).filter((c) => c.wordIds?.length || c.gloss || c.radical).length;
+    if (enriched > 0) {
+      console.warn(
+        `⚠ 现有 characters.json 里有 ${enriched} 个字带词组链接/部首/释义，\n` +
+          '  本步骤会把它们抹掉。之后必须补跑：\n' +
+          '    pnpm content:words && pnpm content:enrich\n' +
+          '  （或直接 pnpm content:all，顺序已包含这两步）',
+      );
+    }
+  } catch {
+    /* 旧文件读不动就算了，不影响本次生成 */
+  }
+}
+
 writeFileSync(join(DATA, 'characters.json'), JSON.stringify(out, null, 1), 'utf8');
 
 const reviewDir = join(PKG, 'review');

@@ -29,7 +29,13 @@ const taught = new Set(charsData.characters.map((c) => c.char));
 
 const jiebaPath = join(CACHE, 'jieba-dict.txt');
 if (!existsSync(jiebaPath)) {
-  console.error(`✗ 缺少 jieba 词典: ${jiebaPath}`);
+  console.error(
+    `✗ 缺少 jieba 词典: ${jiebaPath}\n` +
+      '  下载（约 4.9 MB，MIT）：\n' +
+      '    curl -L -o packages/content/data/cache/jieba-dict.txt \\\n' +
+      '      https://raw.githubusercontent.com/fxsjy/jieba/master/jieba/dict.txt\n' +
+      '  注：组词结果 data/words.json 已随仓库分发，只有要改词表时才需要它。',
+  );
   process.exit(1);
 }
 

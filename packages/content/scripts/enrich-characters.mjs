@@ -27,7 +27,13 @@ const charsPath = join(DATA, 'characters.json');
 const dictPath = join(CACHE, 'xinhua-word.json');
 
 if (!existsSync(dictPath)) {
-  console.error(`✗ 缺少新华字典缓存: ${dictPath}`);
+  console.error(
+    `✗ 缺少新华字典数据: ${dictPath}\n` +
+      '  这是上游开源数据集（MIT，约 26 MB），体积大且许可需自行核对，所以不随本仓库分发。\n' +
+      '  来源与许可说明见 THIRD_PARTY_NOTICES.md。\n' +
+      '  注：部首与释义的结果已经写进 data/characters.json 并随仓库分发，\n' +
+      '      只有要重新生成释义时才需要这个文件。',
+  );
   process.exit(1);
 }
 

@@ -7,7 +7,13 @@ build/
 # 生成产物（可从脚本重建）
 packages/content/assets/audio/
 packages/content/assets/fonts/*.ttf
-packages/content/data/cache/
+
+# 上游原始抓取件默认不入库（52MB 字典等），但一级字表只有 13.7 KB 且是
+# 《通用规范汉字表》原文，是字表构建的必要输入 —— 必须随仓库分发，
+# 否则别人克隆后跑 `pnpm content:chars` 会直接失败。
+# 注意：要放行目录内的单个文件，父目录本身不能被忽略，所以这里用 /* 而不是 /
+packages/content/data/cache/*
+!packages/content/data/cache/level-1.txt
 
 # Capacitor / Android 构建产物
 apps/*/android/.gradle/
